@@ -83,7 +83,7 @@ textarea { min-height: 150px; resize: vertical; }
 
 /* Notre travail */
 .wrap.wide { max-width: 1100px; }
-.jobs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.jobs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 900px; margin-inline: auto; }
 .job { background: var(--paper); border: 1px solid var(--line); display: grid; min-width: 0; }
 .ba { position: relative; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--cream); user-select: none; }
 .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -155,6 +155,9 @@ var CHANTIERS = [
   { titre: "Cave voûtée entièrement débarrassée", type: "Débarras cave", lieu: "",
     texte: "Tri sur place, évacuation des objets et des déchets, sol balayé. Seuls les objets conservés par le client sont restés.",
     avant: "photos/cave-voutee-avant.jpg", apres: "photos/cave-voutee-apres.jpg", format: "portrait" },
+  { titre: "Garage en sous-sol vidé", type: "Débarras garage", lieu: "",
+    texte: "Meubles, cartons, bois et objets accumulés évacués, sol balayé. Le garage est rendu vide et prêt à l'usage.",
+    avant: "photos/garage-avant.jpg", apres: "photos/garage-apres.jpg", format: "portrait" },
 ];
 (function () {
   var list = document.getElementById('jobs');
