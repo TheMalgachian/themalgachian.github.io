@@ -29,9 +29,6 @@ a { color: inherit; }
 .logo { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; letter-spacing: .03em; text-decoration: none; }
 .back { text-decoration: none; opacity: .88; }
 .back:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
-.checker { height: calc(var(--check) * 2); background-color: var(--paper);
-  background-image: conic-gradient(var(--green) 25%, transparent 0 50%, var(--green) 0 75%, transparent 0);
-  background-size: calc(var(--check) * 2) calc(var(--check) * 2); }
 main { padding-block: clamp(36px, 6vw, 72px); }
 .intro { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 32px; }
 .intro img { width: min(260px, 70%); height: auto; }
@@ -64,6 +61,20 @@ textarea { min-height: 150px; resize: vertical; }
 .sent { border: 2px solid var(--green); padding: 18px; background: color-mix(in srgb, var(--green) 8%, var(--paper)); display: grid; gap: 12px; }
 .sent b { color: var(--green); font-family: var(--f-display); font-size: 1.15rem; }
 .google { margin-top: 28px; text-align: center; display: grid; gap: 10px; justify-items: center; color: var(--muted); }
+/* Damier de la carte : filet vert, deux rangées de carrés, filet vert */
+:root { --sq: 14px; --rule: 3px; }
+@media (max-width: 600px) { :root { --sq: 9px; --rule: 2px; } }
+.ring, .checker {
+  background-color: var(--paper);
+  background-image: conic-gradient(var(--paper) 25%, var(--green) 0 50%, var(--paper) 0 75%, var(--green) 0);
+  background-size: calc(var(--sq) * 2) calc(var(--sq) * 2);
+  background-repeat: round;
+  background-origin: padding-box;
+}
+.ring { border: var(--rule) solid var(--green); padding: calc(var(--sq) * 2); }
+.ring-inner { border: var(--rule) solid var(--green); background: var(--cream); }
+.checker { height: calc(var(--sq) * 2 + var(--rule) * 2); border-block: var(--rule) solid var(--green); background-repeat: round repeat; }
+.site-ring { min-height: 100vh; }
 .footer { background: var(--green-deep); color: var(--paper); }
 .footer .wrap { max-width: 1100px; padding-block: 24px; font-size: .95rem; opacity: .85; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 @media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
@@ -71,6 +82,7 @@ textarea { min-height: 150px; resize: vertical; }
 </style>
 </head>
 <body>
+<div class="ring site-ring"><div class="ring-inner">
 <header class="band topbar">
   <div class="wrap">
     <a class="logo" href="./">VID'ANTIK</a>
@@ -144,6 +156,8 @@ textarea { min-height: 150px; resize: vertical; }
 <footer class="band footer">
   <div class="wrap"><span>© 2026 Vid'Antik · Saint-Germain-Nuelles (69210)</span><span>07 44 43 35 39 · vidantikk@gmail.com</span></div>
 </footer>
+
+</div></div>
 
 <script>
 (function () {
