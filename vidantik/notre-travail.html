@@ -87,6 +87,8 @@ textarea { min-height: 150px; resize: vertical; }
 .job { background: var(--paper); border: 1px solid var(--line); display: grid; min-width: 0; }
 .ba { position: relative; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--cream); user-select: none; }
 .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.ba.portrait { aspect-ratio: 3 / 4; }
+.jobs.single { grid-template-columns: minmax(0, 480px); justify-content: center; }
 .ba .after { clip-path: inset(0 0 0 var(--pos, 50%)); }
 .ba .divider { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 3px; margin-left: -1.5px; background: var(--paper); box-shadow: 0 0 0 1px rgba(0,0,0,.25); pointer-events: none; }
 .ba .divider::after { content: "‹ ›"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: var(--paper); display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 1rem; border: 2px solid var(--paper); }
@@ -150,12 +152,16 @@ textarea { min-height: 150px; resize: vertical; }
 // Chantiers en photos. Les fichiers sont dans le dossier photos/ à côté de cette page.
 // Format : { titre: "…", lieu: "…", type: "…", texte: "…", avant: "photos/xxx-avant.jpg", apres: "photos/xxx-apres.jpg" },
 var CHANTIERS = [
+  { titre: "Cave voûtée entièrement débarrassée", type: "Débarras cave", lieu: "",
+    texte: "Tri sur place, évacuation des objets et des déchets, sol balayé. Seuls les objets conservés par le client sont restés.",
+    avant: "photos/cave-voutee-avant.jpg", apres: "photos/cave-voutee-apres.jpg", format: "portrait" },
 ];
 (function () {
   var list = document.getElementById('jobs');
   var empty = document.getElementById('jobs-empty');
   if (!CHANTIERS.length) { list.hidden = true; return; }
   empty.hidden = true;
+  if (CHANTIERS.length === 1) list.classList.add('single');
   CHANTIERS.forEach(function (c, i) {
     var art = document.createElement('article'); art.className = 'job';
     art.innerHTML =
@@ -174,6 +180,7 @@ var CHANTIERS = [
     art.querySelector('h3').textContent = c.titre;
     art.querySelector('p').textContent = c.texte || '';
     var ba = art.querySelector('.ba'), range = art.querySelector('input');
+    if (c.format === 'portrait') ba.classList.add('portrait');
     range.setAttribute('aria-label', 'Comparer avant et après : ' + c.titre);
     range.addEventListener('input', function () { ba.style.setProperty('--pos', range.value + '%'); });
     list.appendChild(art);
