@@ -125,7 +125,7 @@ textarea { min-height: 150px; resize: vertical; }
   <div class="wrap wide">
     <div class="intro">
       <h1>Notre travail</h1>
-      <p>Avant, après : quelques chantiers réalisés par Vid'Antik. Faites glisser le curseur sur chaque photo pour comparer.</p>
+      <p>Découvrez quelques-unes de nos réalisations. Faites glisser le curseur sur chaque photo pour comparer l'état des lieux avant et après notre intervention.</p>
     </div>
 
     <div class="jobs" id="jobs"></div>
@@ -133,11 +133,11 @@ textarea { min-height: 150px; resize: vertical; }
     <div class="jobs-empty" id="jobs-empty">
       <div class="demo" aria-hidden="true"><span>Avant</span><span>Après</span></div>
       <h3>Les premières photos arrivent bientôt</h3>
-      <p>Nous ajoutons ici nos chantiers en photos, avant et après intervention, avec l'accord de nos clients.</p>
+      <p>Nos réalisations seront présentées ici en photos, avant et après intervention, avec l'accord de nos clients.</p>
     </div>
 
     <div class="cta">
-      <p>Un logement, une cave ou un garage à vider ?</p>
+      <p>Une maison, une cave, un garage ou un local à débarrasser ?</p>
       <a class="btn btn-green" href="./#contact">Demander un devis gratuit</a>
     </div>
   </div>
@@ -153,14 +153,14 @@ textarea { min-height: 150px; resize: vertical; }
 // Chantiers en photos. Les fichiers sont dans le dossier photos/ à côté de cette page.
 // Format : { titre: "…", lieu: "…", type: "…", texte: "…", avant: "photos/xxx-avant.jpg", apres: "photos/xxx-apres.jpg" },
 var CHANTIERS = [
-  { titre: "Cave voûtée entièrement débarrassée", type: "Débarras cave", lieu: "",
-    texte: "Tri sur place, évacuation des objets et des déchets, sol balayé. Seuls les objets conservés par le client sont restés.",
+  { titre: "Débarras d'une cave voûtée", type: "Débarras cave", lieu: "",
+    texte: "Tri sur place, évacuation de l'ensemble des objets et déchets, balayage du sol. Seuls les biens conservés par le client ont été laissés en place.",
     avant: "photos/cave-voutee-avant.jpg", apres: "photos/cave-voutee-apres.jpg", format: "portrait" },
-  { titre: "Garage en sous-sol vidé", type: "Débarras garage", lieu: "",
-    texte: "Meubles, cartons, bois et objets accumulés évacués, sol balayé. Le garage est rendu vide et prêt à l'usage.",
+  { titre: "Débarras d'un garage en sous-sol", type: "Débarras garage", lieu: "",
+    texte: "Évacuation du mobilier, des cartons, du bois et des objets accumulés, puis balayage. Le garage est restitué dégagé et prêt à l'emploi.",
     avant: "photos/garage-avant.jpg", apres: "photos/garage-apres.jpg", format: "portrait" },
-  { titre: "Combles vidés et nettoyés", type: "Débarras grenier", lieu: "",
-    texte: "Ancienne isolation au sol, cartons et matériaux stockés évacués, sol nettoyé. Les combles sont dégagés et prêts à l'usage.",
+  { titre: "Débarras et nettoyage de combles", type: "Débarras grenier", lieu: "",
+    texte: "Retrait de l'ancienne isolation au sol, évacuation des cartons et matériaux stockés, nettoyage du sol. Les combles sont restitués dégagés.",
     avant: "photos/combles-avant.jpg", apres: "photos/combles-apres.jpg", format: "portrait" },
 ];
 (function () {
