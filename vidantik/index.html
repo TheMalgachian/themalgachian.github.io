@@ -244,7 +244,7 @@ textarea { min-height: 120px; resize: vertical; }
 
 <section class="band" aria-label="Nos engagements">
   <div class="wrap promises">
-    <div class="promise"><b>Devis gratuit</b><span>Sur photos ou après visite</span></div>
+    <div class="promise"><b>Devis gratuit</b><span>Établi après visite sur place</span></div>
     <div class="promise"><b>Prix clair</b><span>Pas de surprise le jour J</span></div>
     <div class="promise"><b>Discrétion</b><span>Respect des lieux et des personnes</span></div>
     <div class="promise"><b>Recyclage</b><span>Don, revente, tri en déchetterie</span></div>
@@ -296,8 +296,8 @@ textarea { min-height: 120px; resize: vertical; }
       <h2>Comment ça se passe</h2>
     </div>
     <ol class="steps">
-      <li><h3>Premier contact</h3><p>Vous appelez ou envoyez quelques photos. Nous fixons une visite si besoin.</p></li>
-      <li><h3>Devis gratuit</h3><p>Un prix clair, détaillé, sans engagement.</p></li>
+      <li><h3>Premier contact</h3><p>Vous appelez ou laissez vos coordonnées. Nous fixons ensemble une date de visite.</p></li>
+      <li><h3>Visite et devis</h3><p>Valentin vient voir les lieux et établit un devis gratuit, clair et sans engagement.</p></li>
       <li><h3>Tri et évacuation</h3><p>Ce que vous gardez, ce qui est donné, revendu ou recyclé : décidé avec vous.</p></li>
       <li><h3>Place nette</h3><p>Nettoyage final et remise des clés. Vous retrouvez un lieu propre.</p></li>
     </ol>
@@ -378,7 +378,7 @@ textarea { min-height: 120px; resize: vertical; }
           <label for="msg">Votre message</label>
           <textarea id="msg" placeholder="Surface, étage, accès, délai souhaité…"></textarea>
         </div>
-        <label class="check"><input type="checkbox" id="photos"> J'ai des photos à envoyer (Valentin vous indiquera comment les transmettre)</label>
+        <div class="field"><label for="dispo">Vos disponibilités pour la visite</label><input type="text" id="dispo" placeholder="Ex. : en semaine après 17 h, samedi matin"></div>
         <button class="btn btn-green" type="submit">Envoyer ma demande</button>
         <p id="form-error" class="error" hidden></p>
         <div class="sent" id="sent" hidden><b>Votre messagerie s'ouvre</b> avec la demande pré-remplie : il ne reste qu'à l'envoyer. Rien ne s'ouvre ? Appelez le 07 44 43 35 39.</div>
@@ -394,7 +394,7 @@ textarea { min-height: 120px; resize: vertical; }
       <h2>Vous vous demandez peut-être</h2>
     </div>
     <div class="faq">
-      <details><summary>Le devis est-il vraiment gratuit ?</summary><p>Oui. Le devis est gratuit et sans engagement, sur photos ou après une visite sur place.</p></details>
+      <details><summary>Le devis est-il vraiment gratuit ?</summary><p>Oui. Le devis est gratuit et sans engagement. Il est établi après une visite sur place, pour vous donner un prix juste.</p></details>
       <details><summary>Dois-je être présent pendant le débarras ?</summary><p>Pas forcément. Vous pouvez confier les clés, par exemple pour une succession à distance. Des photos avant et après peuvent vous être envoyées.</p></details>
       <details><summary>Que deviennent les papiers et souvenirs ?</summary><p>Les documents, photos, bijoux et objets personnels trouvés sont mis de côté et vous sont remis. Rien n'est jeté sans votre accord.</p></details>
       <details><summary>Les objets anciens peuvent-ils réduire le prix ?</summary><p>Oui. Les meubles et objets revendables sont estimés et leur valeur peut venir en déduction du devis.</p></details>
@@ -455,7 +455,7 @@ textarea { min-height: 120px; resize: vertical; }
     err.hidden = true;
     var v = function (id) { return document.getElementById(id).value.trim(); };
     var body = 'Nom : ' + v('name') + '\nTéléphone : ' + v('tel') + '\nE-mail : ' + v('email') + '\nCommune : ' + v('city') +
-      '\nPrestation : ' + v('kind') + '\nPhotos à envoyer : ' + (document.getElementById('photos').checked ? 'oui' : 'non') + '\n\n' + v('msg');
+      '\nPrestation : ' + v('kind') + '\nDisponibilités pour la visite : ' + v('dispo') + '\n\n' + v('msg');
     window.location.href = 'mailto:vidantikk@gmail.com?subject=' + encodeURIComponent('Demande de devis - ' + v('city')) + '&body=' + encodeURIComponent(body);
     document.getElementById('sent').hidden = false;
   });
