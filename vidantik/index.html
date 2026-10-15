@@ -136,6 +136,20 @@ a { color: inherit; }
 @media (max-width: 860px) { .streams { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .streams { grid-template-columns: 1fr; } }
 
+/* Avis */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.review { background: var(--paper); border: 1px solid var(--line); padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.stars { color: var(--ochre); letter-spacing: .12em; font-size: 1.15rem; }
+.review blockquote { margin: 0; font-style: italic; }
+.review footer { color: var(--muted); font-size: .95rem; }
+.review footer b { color: var(--green); font-family: var(--f-display); font-style: normal; }
+.reviews-empty { max-width: 640px; margin-inline: auto; text-align: center; background: var(--paper); border: 1px dashed var(--line); padding: clamp(24px, 4vw, 40px); display: grid; gap: 14px; justify-items: center; }
+.reviews-empty .stars { font-size: 1.6rem; }
+.reviews-empty p { color: var(--muted); max-width: 46ch; }
+.reviews-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+@media (max-width: 900px) { .reviews { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .reviews { grid-template-columns: 1fr; } }
+
 /* Devis */
 .quote { display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: start; }
 .panel { background: var(--paper); border: 1px solid var(--line); padding: clamp(20px, 3vw, 32px); display: grid; gap: 18px; min-width: 0; }
@@ -215,6 +229,7 @@ textarea { min-height: 120px; resize: vertical; }
       <a href="#prestations">Prestations</a>
       <a href="#deroule">Déroulé</a>
       <a href="#recyclage">Recyclage</a>
+      <a href="#avis">Avis</a>
       <a href="#faq">Questions</a>
       <a class="btn btn-ochre btn-sm" href="#contact">Devis gratuit</a>
     </nav>
@@ -320,7 +335,27 @@ textarea { min-height: 120px; resize: vertical; }
   </div>
 </section>
 
-<section class="band section" id="contact">
+<section class="band section" id="avis">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Avis clients</span>
+      <h2>Ils nous ont fait confiance</h2>
+      <p class="lead">Les avis laissés par nos clients sur Google.</p>
+    </div>
+    <div class="reviews" id="reviews-list"></div>
+    <div class="reviews-empty" id="reviews-empty">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <h3>Vos avis arrivent bientôt</h3>
+      <p>Vous avez fait appel à Vid'Antik ? Votre avis aide d'autres familles à nous faire confiance. Il ne prend qu'une minute.</p>
+    </div>
+    <div class="reviews-cta">
+      <a class="btn btn-green" id="review-write" href="https://www.google.com/maps/search/?api=1&amp;query=Vid%27Antik%20Saint-Germain-Nuelles" target="_blank" rel="noopener">Laisser un avis sur Google</a>
+      <a class="btn btn-line" id="review-read" href="https://www.google.com/maps/search/?api=1&amp;query=Vid%27Antik%20Saint-Germain-Nuelles" target="_blank" rel="noopener">Voir tous les avis Google</a>
+    </div>
+  </div>
+</section>
+
+<section class="band section" id="contact" style="padding-top:0">
   <div class="wrap">
     <div class="head">
       <span class="kicker">Devis gratuit</span>
@@ -428,6 +463,26 @@ textarea { min-height: 120px; resize: vertical; }
 </footer>
 
 <script>
+// Vrais avis clients uniquement, recopiés depuis Google. Exemple de format :
+// { nom: "Prénom N.", note: 5, texte: "…", date: "octobre 2026" },
+var AVIS = [
+];
+(function () {
+  var list = document.getElementById('reviews-list');
+  var empty = document.getElementById('reviews-empty');
+  if (!AVIS.length) { list.hidden = true; return; }
+  empty.hidden = true;
+  AVIS.forEach(function (a) {
+    var el = document.createElement('article'); el.className = 'review';
+    var stars = document.createElement('span'); stars.className = 'stars';
+    stars.textContent = '★★★★★'.slice(0, a.note) + '☆☆☆☆☆'.slice(0, 5 - a.note);
+    stars.setAttribute('aria-label', a.note + ' sur 5');
+    var q = document.createElement('blockquote'); q.textContent = '« ' + a.texte + ' »';
+    var f = document.createElement('footer'); var b = document.createElement('b'); b.textContent = a.nom;
+    f.appendChild(b); f.appendChild(document.createTextNode(' · ' + a.date + ' · avis Google'));
+    el.appendChild(stars); el.appendChild(q); el.appendChild(f); list.appendChild(el);
+  });
+})();
 (function () {
   document.querySelectorAll('.copy').forEach(function (b) {
     b.addEventListener('click', function () {
