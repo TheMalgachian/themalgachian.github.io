@@ -77,13 +77,27 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .subbar button[aria-selected="true"]{background:var(--blue);color:#fff}
 .subbar .lbl{align-self:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-right:10px}
 
-/* Accueil : cartes catégories */
-.cards{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}
-.card{background:none;border:0;border-right:1px solid var(--line);color:var(--ink);text-align:left;padding:16px 20px 18px;display:flex;flex-direction:column;gap:2px;transition:background .2s}
-.card:last-child{border-right:0}
-.card:hover{background:var(--blue-soft)}
-.card strong{font-weight:500;font-size:17px;color:var(--blue)}
-.card small{font-size:13px;color:var(--muted)}
+/* Accueil */
+.copy p{margin:0;max-width:60ch}
+.figures{display:flex;flex-wrap:wrap;gap:12px 36px;margin:6px 0 0}
+.figures div{display:flex;flex-direction:column-reverse}
+.figures dd{margin:0;font-size:28px;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
+.figures dt{font-size:13px;color:var(--muted)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.act{background:none;border:1px solid var(--line);border-radius:4px;text-align:left;padding:14px 16px;display:flex;flex-direction:column;gap:2px;transition:background .2s,border-color .2s}
+.act:hover{background:var(--blue-soft);border-color:var(--blue)}
+.act strong{font-weight:500;color:var(--blue);font-size:17px}
+.act small{color:var(--muted);font-size:13px}
+.engage{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px}
+.engage div{border-top:3px solid var(--blue);padding-top:10px}
+.engage strong{font-weight:600;display:block;margin-bottom:2px}
+.engage p{color:var(--muted);font-size:15px}
+.partners{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.partner{display:flex;flex-direction:column;gap:6px}
+.plogo{height:84px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;padding:12px;color:var(--muted);font-weight:500}
+.plogo img{max-height:100%;max-width:100%;object-fit:contain}
+.plogo img+span{display:none}
+.partner small{font-size:13px;color:var(--muted)}
 
 /* Contact */
 .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 24px;margin:4px 0 0;font-size:16px}
@@ -158,7 +172,6 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
   .nav-btn{width:100%;text-align:left;padding:12px 0;font-size:18px}
   .nav-btn::after{left:0;right:auto;width:28px}
 }
-@media (max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(3){border-right:0}.card:nth-child(n+4){border-top:1px solid var(--line)}}
 @media (max-width:900px){
   body{overflow:auto;height:auto;min-height:100%}
   html{height:auto}
@@ -168,8 +181,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
   .visual{order:-1;margin:0;height:38vw;min-height:170px}
   .copy{padding-block:24px 28px;max-height:none;overflow:visible}
   .points{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr 1fr}
-  .card{border-right:0!important;border-top:1px solid var(--line)}
+  .acts,.engage,.partners{grid-template-columns:1fr}
   .modal form{grid-template-columns:1fr}
   .page{position:relative;overflow:visible}
   .gallery{overflow:visible}
@@ -291,6 +303,39 @@ const CHANTIERS = [
 ];
 
 /* ================================================================
+   ACCUEIL : présentation de l'entreprise, engagements, partenaires,
+   infos pratiques. Remplacez les textes entre guillemets.
+   Logos des partenaires : images/partenaires/ (PNG ou SVG, fond transparent).
+   ================================================================ */
+const ENTREPRISE = {
+  titre:"L'air comprimé, de la vente au dépannage",
+  texte:["Air-Tech accompagne les entreprises dans toutes les étapes de leur installation d'air comprimé : choix du matériel, installation, entretien et dépannage.",
+         "Présentez ici l'entreprise en quelques phrases : où elle se trouve, depuis quand elle existe, combien de personnes y travaillent, quels types de clients elle sert."],
+  chiffres:[["AAAA","Année de création"],["À compléter","Techniciens"],["À compléter","Clients suivis"]]
+};
+const ENGAGEMENTS = [
+  ["Un seul interlocuteur","Du conseil au dépannage, vous parlez toujours à la même équipe."],
+  ["Toutes marques","Nous intervenons sur les compresseurs de toutes les marques."],
+  ["Devis avant travaux","Aucune intervention sans votre accord sur le prix."],
+  ["Conseil énergie","Nous vous aidons à réduire la consommation de votre installation."]
+];
+const PARTENAIRES = [
+  {nom:"Partenaire 1", logo:"partenaire-01.png", texte:"Fabricant de compresseurs"},
+  {nom:"Partenaire 2", logo:"partenaire-02.png", texte:"Traitement de l'air"},
+  {nom:"Partenaire 3", logo:"partenaire-03.png", texte:"Réseaux aluminium"},
+  {nom:"Partenaire 4", logo:"partenaire-04.png", texte:"Générateurs d'azote"}
+];
+const INFOS = [
+  ["Zone d'intervention","À compléter (ex. : départements couverts)"],
+  ["Horaires","À compléter"],
+  ["Dépannage","À compléter (délai et numéro d'urgence)"],
+  ["Téléphone","À compléter"],
+  ["E-mail","À compléter"],
+  ["Adresse","À compléter"]
+];
+const HOME_TABS = [["presentation","Présentation"],["activites","Nos activités"],["engagements","Nos engagements"],["partenaires","Partenaires"],["infos","Infos pratiques"]];
+
+/* ================================================================
    OCCASION : une machine à vendre = une ligne.
    Photo à déposer dans images/occasions/ (format JPG, paysage).
    prix : laissez "" pour afficher « Prix sur demande ».
@@ -328,23 +373,14 @@ const state = {cat:"accueil", sub:{}};
 function bg(id){ return `background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
 
 function renderMenu(){
-  $("#menu").innerHTML = CATS.map(c =>
+  $("#menu").innerHTML = [{id:"accueil",name:"Accueil"}, ...CATS].map(c =>
     `<li><button class="nav-btn" data-cat="${c.id}" ${c.id===state.cat?'aria-current="page"':''}>${esc(c.short||c.name)}</button></li>`).join("");
 }
 
 function render(){
   renderMenu();
   const m = $("#main");
-  if(state.cat==="accueil"){
-    m.innerHTML = `<section class="hero"><div class="visual" style="${bg('accueil')}"></div>
-      <div class="copy gut"><span class="eyebrow">Air-Tech</span>
-        <h1>L'air comprimé, de la vente au dépannage</h1>
-        <p class="lead">Compresseurs, réseaux d'air, générateurs d'azote et récupération de chaleur : un seul interlocuteur pour vos installations.</p>
-        <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="air-comprime">Nos prestations</button></div></div>
-      <div class="cards">${CATS.filter(c=>c.subs).map(c=>`<button class="card" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div>
-    </section>`;
-    return;
-  }
+  if(state.cat==="accueil"){ m.innerHTML = accueil(); return; }
   const c = CATS.find(x=>x.id===state.cat);
   if(c.id==="travail"){ m.innerHTML = travail(); return; }
   if(c.id==="occasion"){ m.innerHTML = occasion(); return; }
@@ -372,6 +408,36 @@ function render(){
 
 const CATNAME = id => (CATS.find(c=>c.id===id)||{}).name || "";
 function photo(src){ return `background-image:url('${src}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
+
+function accueil(){
+  const t = state.sub.accueil || "presentation";
+  let body = "";
+  if(t==="presentation"){
+    body = `<span class="eyebrow">Air-Tech</span><h1>${esc(ENTREPRISE.titre)}</h1>
+      ${ENTREPRISE.texte.map((x,i)=>`<p class="${i?'':'lead'}">${esc(x)}</p>`).join("")}
+      <dl class="figures">${ENTREPRISE.chiffres.map(([v,k])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+      <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-hometab="activites">Nos activités</button></div>`;
+  } else if(t==="activites"){
+    body = `<span class="eyebrow">Nos activités</span><h1>Tout pour votre air comprimé</h1>
+      <div class="acts">${CATS.filter(c=>c.subs).map(c=>`<button class="act" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div>`;
+  } else if(t==="engagements"){
+    body = `<span class="eyebrow">Nos engagements</span><h1>Ce que vous pouvez attendre de nous</h1>
+      <div class="engage">${ENGAGEMENTS.map(([h,x])=>`<div><strong>${esc(h)}</strong><p>${esc(x)}</p></div>`).join("")}</div>`;
+  } else if(t==="partenaires"){
+    body = `<span class="eyebrow">Partenaires</span><h1>Nos partenaires</h1>
+      <p class="lead">Nous travaillons avec des fabricants et fournisseurs reconnus.</p>
+      <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span><small>${esc(x.texte)}</small></div>`).join("")}</div>`;
+  } else {
+    body = `<span class="eyebrow">Infos pratiques</span><h1>Bon à savoir</h1>
+      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div>`;
+  }
+  return `<section class="hero"><div class="visual" style="${bg('accueil')}"></div>
+    <div class="copy gut">${body}</div>
+    <div class="subbar gut" role="tablist" aria-label="Accueil"><span class="lbl">Accueil</span>
+      ${HOME_TABS.map(([id,n])=>`<button role="tab" aria-selected="${id===t}" data-hometab="${id}">${esc(n)}</button>`).join("")}</div>
+  </section>`;
+}
 
 function travail(){
   const f = state.filtre || "tout";
@@ -443,7 +509,8 @@ function go(cat){
 function closeNav(){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
 
 document.addEventListener("click", e=>{
-  const t = e.target.closest("[data-cat],[data-sub],[data-devis],[data-filtre],[data-shot],[data-occ]"); if(!t) return;
+  const t = e.target.closest("[data-cat],[data-sub],[data-devis],[data-filtre],[data-shot],[data-occ],[data-hometab]"); if(!t) return;
+  if(t.dataset.hometab){ state.sub.accueil=t.dataset.hometab; render(); return; }
   if(t.dataset.filtre){ state.filtre=t.dataset.filtre; render(); return; }
   if(t.dataset.shot!==undefined) return openShot(+t.dataset.shot);
   if(t.dataset.occ!==undefined) return openOcc(+t.dataset.occ);
