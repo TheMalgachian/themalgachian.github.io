@@ -2,151 +2,171 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{margin:0}[hidden]{display:none!important}*,*::before,*::after{box-sizing:border-box}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Air-Tech</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Air-Tech : air comprimé, réseaux d'air, générateurs d'azote, gainage et récupération d'air chaud, compresseurs d'occasion.">
+<meta name="description" content="Air-Tech : vente, installation, maintenance et réparation de compresseurs, réseaux d'air, générateurs d'azote, récupération d'air chaud, compresseurs d'occasion.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Jost:wght@500&display=swap">
 <style>
-/* Mise en page : en-tête fixe (logo + onglets), une "fenêtre" par catégorie avec sous-onglets à gauche, aucune page qui défile */
+/* Mise en page : en-tête blanc (logo à gauche, menus à droite), bandeau d'annonce, puis une grande image plein écran par onglet avec le texte par-dessus */
 :root{
-  --blue:#0047a6;          /* bleu du logo */
-  --blue-ink:#00357c;
-  --blue-soft:#e8eef8;
-  --bg:#f4f6fa;
-  --surface:#ffffff;
-  --fg:#14213a;
-  --muted:#5a6680;
-  --line:#d5dceb;
-  --on-blue:#ffffff;
-  --display:"Jost","Futura","Century Gothic",system-ui,sans-serif;
-  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --blue:#0047a6;        /* bleu du logo */
+  --ink:#141414;
+  --paper:#ffffff;
+  --mist:#f3f4f6;
+  --line:#e2e4e8;
+  --muted:#5f6670;
+  --hero-ink:#ffffff;
+  --sans:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --logo:"Jost","Futura","Century Gothic",sans-serif;
+  --pipes:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800' fill='none' stroke='white' stroke-width='3'%3E%3Cg opacity='.16'%3E%3Cpath d='M620 140H1120V420'/%3E%3Cpath d='M700 140V620H1200'/%3E%3Cpath d='M860 140V300H1040V700'/%3E%3Cpath d='M700 460H860V800'/%3E%3Cpath d='M1040 520H1200'/%3E%3C/g%3E%3Cg opacity='.28' stroke-width='4'%3E%3Ccircle cx='700' cy='140' r='14'/%3E%3Ccircle cx='860' cy='300' r='14'/%3E%3Ccircle cx='1040' cy='520' r='14'/%3E%3Ccircle cx='860' cy='460' r='9'/%3E%3C/g%3E%3Cg opacity='.5' stroke-width='5'%3E%3Ccircle cx='1040' cy='300' r='46'/%3E%3Cpath d='M1040 300l24-22'/%3E%3C/g%3E%3C/svg%3E");
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --blue:#2f74d6;--blue-ink:#8db6f0;--blue-soft:#13264a;--bg:#0a1222;--surface:#111c31;--fg:#e6ecf7;--muted:#9aa8c2;--line:#24344f;--on-blue:#ffffff;color-scheme:dark}}
-:root[data-theme="dark"]{
-  --blue:#2f74d6;--blue-ink:#8db6f0;--blue-soft:#13264a;--bg:#0a1222;--surface:#111c31;--fg:#e6ecf7;--muted:#9aa8c2;--line:#24344f;--on-blue:#ffffff;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#f1f2f4;--paper:#111317;--mist:#1a1d23;--line:#2a2e36;--muted:#a3a9b3;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#f1f2f4;--paper:#111317;--mist:#1a1d23;--line:#2a2e36;--muted:#a3a9b3;color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;display:flex;flex-direction:column;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px}
-.wrap{width:100%;max-width:1180px;margin-inline:auto}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;display:flex;flex-direction:column;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.gut{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 
-/* ---------- Logo (couleurs fixes, toujours sur fond blanc) ---------- */
-.logo{display:inline-flex;background:#fff;border:6px solid #0047a6;padding:10px 22px;text-decoration:none;flex:none}
-.wordmark{font-family:var(--display);font-weight:500;color:#0047a6;font-size:28px;letter-spacing:.02em;line-height:1;display:inline-flex;align-items:stretch;position:relative}
-.wordmark .t{display:inline-block}
+/* ---------- Logo (couleurs fixes) ---------- */
+.logo{display:inline-flex;background:#fff;border:4px solid #0047a6;padding:6px 14px;text-decoration:none;flex:none}
+.wordmark{font-family:var(--logo);font-weight:500;color:#0047a6;font-size:21px;letter-spacing:.02em;line-height:1;display:inline-flex;align-items:stretch}
 .wordmark .lft{width:.55em;border-left:.075em solid currentColor;border-bottom:.075em solid currentColor;height:.42em;align-self:flex-end;margin-right:-.12em}
 .wordmark .dash{width:.62em;align-self:center;border-top:.075em solid currentColor;margin:0 -.04em 0 .02em}
 .wordmark .rgt{width:.55em;border-right:.075em solid currentColor;border-top:.075em solid currentColor;height:.42em;align-self:flex-start;margin-left:-.06em}
 
-/* ---------- En-tête & onglets ---------- */
-header{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:14px}
-nav{flex:1;min-width:0;overflow-x:auto}
-.tabs{display:flex;gap:4px;justify-content:flex-end;list-style:none;margin:0;padding:0}
-.tab{border:1px solid transparent;background:none;color:var(--fg);font-family:var(--display);font-weight:500;font-size:15px;padding:9px 14px;white-space:nowrap;border-radius:2px}
-.tab:hover{background:var(--blue-soft);color:var(--blue-ink)}
-.tab[aria-selected="true"]{background:var(--blue);color:var(--on-blue)}
+/* ---------- En-tête ---------- */
+header{height:76px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--paper);position:relative;z-index:5}
+nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.nav-btn{background:none;border:0;padding:10px 12px;font-size:16px;font-weight:400;white-space:nowrap;position:relative}
+.nav-btn::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--blue);transform:scaleX(0);transition:transform .2s}
+.nav-btn:hover::after,.nav-btn[aria-current="page"]::after{transform:scaleX(1)}
+.nav-btn[aria-current="page"]{font-weight:500}
+.burger{display:none;background:none;border:0;padding:8px;width:44px;height:44px}
+.burger span{display:block;height:1.5px;background:var(--ink);margin:6px 4px}
 
-/* ---------- Fenêtre ---------- */
-main{flex:1;min-height:0;display:flex}
-.win{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--surface);border:2px solid var(--blue);box-shadow:0 10px 30px -18px rgba(0,40,100,.45)}
-.bar{background:var(--blue);color:var(--on-blue);display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap}
-.bar h1{font-family:var(--display);font-weight:500;font-size:20px;margin:0;letter-spacing:.01em;text-wrap:balance}
-.bar p{margin:0;opacity:.85;font-size:15px;flex:1;min-width:200px}
-.bar .cta{margin-left:auto}
-.cta{background:#fff;color:#0047a6;border:0;padding:8px 16px;font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border-radius:2px}
-.cta:hover{background:#dfe8f6}
-.cta.solid{background:var(--blue);color:var(--on-blue)}
-.cta.solid:hover{background:var(--blue-ink);color:var(--surface)}
+/* ---------- Bandeau ---------- */
+.notice{flex:none;background:#0b0b0c;color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center;gap:14px;min-height:48px;padding-block:8px;position:relative;text-align:center}
+.notice button.link{background:none;border:0;color:#fff;text-decoration:underline;text-underline-offset:3px;font-weight:500;padding:0}
+.notice .x{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:22px;line-height:1;padding:6px}
 
-.body{flex:1;min-height:0;display:grid;grid-template-columns:230px 1fr}
-.side{border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:2px;overflow:auto}
-.side .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:0 10px 8px}
-.sub{text-align:left;background:none;border:0;border-left:3px solid transparent;color:var(--fg);padding:9px 12px;font-size:16px}
-.sub:hover{background:var(--blue-soft)}
-.sub[aria-selected="true"]{border-left-color:var(--blue);background:var(--blue-soft);color:var(--blue-ink);font-weight:600}
-.pane{padding:26px 32px;overflow:auto;min-width:0}
-.pane h2{font-family:var(--display);font-weight:500;font-size:28px;margin:0 0 6px;color:var(--blue-ink);text-wrap:balance}
-.pane .lead{font-size:18px;max-width:62ch;margin:0 0 20px}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px 32px;max-width:900px}
-.cols h3{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
-.cols ul{margin:0;padding-left:18px;display:grid;gap:5px}
-.spec{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 24px}
-.spec span{border:1px solid var(--line);padding:4px 10px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.spec b{color:var(--fg);font-weight:600}
+/* ---------- Grande image ---------- */
+main{flex:1;min-height:0;position:relative;overflow:hidden;background:#06244f}
+.hero{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;color:var(--hero-ink);
+  background-position:center;background-size:cover}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,10,25,.72) 0%,rgba(0,10,25,.35) 45%,rgba(0,10,25,0) 75%),linear-gradient(0deg,rgba(0,10,25,.55) 0%,rgba(0,10,25,0) 40%)}
+.hero>*{position:relative}
+.copy{max-width:640px;padding-bottom:28px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.hero h1{font-weight:300;font-size:clamp(34px,4.6vw,60px);line-height:1.08;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.hero .lead{font-size:18px;margin:0;max-width:56ch;opacity:.95}
+.points{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;margin:2px 0 0;padding:0;list-style:none;font-size:15px;opacity:.92}
+.points li{padding-left:16px;position:relative}
+.points li::before{content:"";position:absolute;left:0;top:.68em;width:7px;height:1.5px;background:currentColor}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:13px;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 12px;font-variant-numeric:tabular-nums}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pill{border-radius:999px;padding:12px 24px;font-size:16px;border:1px solid #fff;background:#fff;color:#141414;transition:background .2s,color .2s}
+.pill:hover{background:#e9edf3}
+.pill.ghost{background:transparent;color:#fff}
+.pill.ghost:hover{background:rgba(255,255,255,.14)}
 
-/* Accueil */
-.home{padding:26px 32px;overflow:auto;flex:1}
-.home .lead{font-size:19px;max-width:60ch;margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.tile{text-align:left;background:var(--surface);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:6px;color:var(--fg)}
-.tile:hover{border-color:var(--blue);background:var(--blue-soft)}
-.tile strong{font-family:var(--display);font-weight:500;font-size:18px;color:var(--blue-ink)}
-.tile small{color:var(--muted);font-size:14px}
+/* Sous-onglets en bas de l'image */
+.subbar{border-top:1px solid rgba(255,255,255,.22);display:flex;gap:4px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.subbar::-webkit-scrollbar{display:none}
+.subbar button{background:none;border:0;color:#fff;opacity:.72;padding:8px 16px;border-radius:999px;font-size:15px;white-space:nowrap}
+.subbar button:hover{opacity:1;background:rgba(255,255,255,.1)}
+.subbar button[aria-selected="true"]{opacity:1;background:#fff;color:#141414}
+.subbar .lbl{align-self:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;padding-right:10px}
 
-/* Occasion */
-table{border-collapse:collapse;width:100%;max-width:820px;font-variant-numeric:tabular-nums}
-.tbl{overflow-x:auto;margin-bottom:10px}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:15px}
-th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.note{font-size:13px;color:var(--muted)}
+/* Accueil : cartes catégories */
+.cards{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(255,255,255,.22)}
+.card{background:none;border:0;border-right:1px solid rgba(255,255,255,.16);color:#fff;text-align:left;padding:16px 18px 18px;display:flex;flex-direction:column;gap:2px;transition:background .2s}
+.card:last-child{border-right:0}
+.card:hover{background:rgba(255,255,255,.1)}
+.card strong{font-weight:500;font-size:17px}
+.card small{font-size:13px;opacity:.72}
 
 /* Contact */
-.contact dl{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;margin:0 0 20px}
-.contact dt{color:var(--muted)}
-.contact dd{margin:0}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 24px;margin:4px 0 0;font-size:16px}
+.facts dt{opacity:.7}.facts dd{margin:0}
 
-/* ---------- Fenêtre modale devis ---------- */
-.overlay{position:fixed;inset:0;background:rgba(5,15,35,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
-.modal{background:var(--surface);border:2px solid var(--blue);width:100%;max-width:560px;max-height:100%;display:flex;flex-direction:column}
-.modal .bar button{background:none;border:0;color:var(--on-blue);font-size:22px;line-height:1;margin-left:auto;padding:2px 6px}
-.modal form{padding:18px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;overflow:auto}
-.modal label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+/* Occasion */
+.stock{border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;min-width:420px}
+.stock-wrap{overflow-x:auto;max-width:100%}
+.stock th,.stock td{text-align:left;padding:5px 16px 5px 0;border-bottom:1px solid rgba(255,255,255,.22)}
+.stock th{font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.note{font-size:13px;opacity:.7;margin:0}
+
+/* ---------- Fenêtre devis ---------- */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal{background:var(--paper);color:var(--ink);width:100%;max-width:580px;max-height:100%;overflow:auto;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px 6px}
+.modal-head h2{font-weight:400;font-size:26px;margin:0}
+.modal-head button{background:none;border:0;font-size:26px;line-height:1;padding:4px 8px}
+.modal form{padding:14px 26px 26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted);min-width:0}
 .modal .full{grid-column:1/-1}
-.modal input,.modal select,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:8px 10px;border-radius:2px}
-.modal textarea{min-height:90px;resize:vertical}
-.ok{grid-column:1/-1;background:var(--blue-soft);color:var(--blue-ink);padding:10px 12px;font-size:14px}
+.modal input,.modal select,.modal textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--mist);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.modal textarea{min-height:96px;resize:vertical}
+.modal .send{justify-self:start;border-radius:999px;padding:12px 26px;border:0;background:var(--blue);color:#fff;font-size:16px}
+.modal .send:hover{background:#00357c}
+.ok{grid-column:1/-1;margin:0;background:var(--mist);border-left:3px solid var(--blue);padding:10px 14px;font-size:14px}
 
-footer{margin-top:10px;font-size:13px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
-
-@media (max-width:760px){
-  body{height:auto;min-height:100%}
+/* ---------- Mobile ---------- */
+@media (max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(3){border-right:0}.card:nth-child(n+4){border-top:1px solid rgba(255,255,255,.16)}}
+@media (max-width:900px){
+  body{overflow:auto;height:auto;min-height:100%}
   html{height:auto}
-  nav{flex-basis:100%}
-  .tabs{justify-content:flex-start}
-  .body{grid-template-columns:1fr}
-  .side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}
-  .side .lbl{display:none}
-  .sub{border-left:0;border-bottom:3px solid transparent;white-space:nowrap}
-  .sub[aria-selected="true"]{border-bottom-color:var(--blue)}
-  .pane,.home{padding:20px 16px}
+  .burger{display:block}
+  nav{position:absolute;top:76px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;padding:8px max(16px,env(safe-area-inset-left,0px)) 14px}
+  .nav-btn{width:100%;text-align:left;padding:12px 0;font-size:18px}
+  .nav-btn::after{left:0;right:auto;width:28px}
+  main{min-height:calc(100svh - 124px)}
+  .hero{position:relative;min-height:calc(100svh - 124px)}
+  .notice{padding-right:48px;font-size:14px}
+  .notice>span{display:none}
+  .points{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr 1fr}
+  .card{border-right:0!important;border-top:1px solid rgba(255,255,255,.16)}
+  .copy{padding-top:56px}
   .modal form{grid-template-columns:1fr}
-  .wordmark{font-size:23px}
+  .gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
-@media (prefers-reduced-motion:no-preference){.pane,.home{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:no-preference){
+  .copy{animation:rise .5s ease-out both}
+  @keyframes rise{from{opacity:.25;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
 </style>
-</head><body>
+</head>
+<body>
 
-<header class="wrap">
-  <a class="logo" href="#accueil" aria-label="Air-Tech, accueil">
-    <span class="wordmark"><span class="lft"></span><span class="t">AIR</span><span class="dash"></span><span class="t">TECH</span><span class="rgt"></span></span>
+<header class="gut">
+  <a class="logo" href="#accueil" id="home-link" aria-label="Air-Tech, accueil">
+    <span class="wordmark"><span class="lft"></span><span>AIR</span><span class="dash"></span><span>TECH</span><span class="rgt"></span></span>
   </a>
-  <nav aria-label="Catégories"><div class="tabs" role="tablist" id="tabs"></div></nav>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  <nav id="nav" aria-label="Menu principal"><ul id="menu"></ul></nav>
 </header>
 
-<main class="wrap"><section class="win" id="win" aria-live="polite"></section></main>
+<div class="notice gut" id="notice">
+  <span>Dépannage de compresseurs toutes marques</span>
+  <button class="link" type="button" data-devis="air-comprime:reparation">Demander une intervention</button>
+  <button class="x" type="button" id="notice-x" aria-label="Fermer le bandeau">×</button>
+</div>
 
-<footer class="wrap"><span>Air-Tech · Spécialiste de l'air comprimé</span><span>Vente · Installation · Maintenance · Réparation</span></footer>
+<main id="main"></main>
 
 <div class="overlay" id="overlay" hidden>
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <div class="bar"><h1 id="mTitle">Demande de devis</h1><button type="button" id="mClose" aria-label="Fermer">×</button></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="modal-head"><h2 id="m-title">Demande de devis</h2><button type="button" id="m-close" aria-label="Fermer">×</button></div>
     <form id="devis">
       <label>Nom<input id="f-nom" required autocomplete="name"></label>
       <label>Société<input id="f-soc" autocomplete="organization"></label>
@@ -155,159 +175,142 @@ footer{margin-top:10px;font-size:13px;color:var(--muted);display:flex;gap:16px;f
       <label>Catégorie<select id="f-cat"></select></label>
       <label>Prestation<select id="f-srv"></select></label>
       <label class="full">Votre besoin<textarea id="f-msg" placeholder="Ex. : compresseur à vis 15 kW, atelier de 400 m², besoin de 8 bar…"></textarea></label>
-      <div class="full"><button class="cta solid" type="submit">Envoyer la demande</button></div>
+      <button class="send full" type="submit">Envoyer la demande</button>
       <p class="ok" id="ok" hidden>Votre demande est prête. L'envoi par e-mail sera activé lors de la mise en ligne du site.</p>
     </form>
   </div>
 </div>
 
 <script>
+/* Photos : déposez vos images dans le dossier images/ avec ces noms. Sans photo, un fond bleu illustré s'affiche. */
+const IMG = id => `images/${id}.jpg`;
+
 const CATS = [
- {id:"air-comprime", name:"Air comprimé", tag:"Compresseurs à vis, à pistons et sécheurs, du choix de la machine à son dépannage.",
-  subs:[
-   {id:"vente", name:"Vente", lead:"Nous dimensionnons le compresseur selon votre consommation réelle, pas selon un catalogue.",
-    a:["Compresseurs à vis et à pistons","Vitesse fixe ou variable","Sécheurs frigorifiques et par adsorption","Cuves, filtres et purgeurs"],
-    b:["Mesure ou estimation du débit consommé","Choix de la pression de service","Calcul du coût énergétique annuel","Offre chiffrée et délais"],
-    spec:[["Pression","7 à 13 bar"],["Puissance","2,2 à 250 kW"],["Qualité d'air","ISO 8573-1"]]},
-   {id:"installation", name:"Installation", lead:"Pose, raccordement et mise en service de votre centrale d'air comprimé.",
-    a:["Implantation du local compresseur","Raccordement électrique et réseau","Évacuation des condensats","Ventilation du local"],
-    b:["Visite technique sur site","Installation par nos techniciens","Mise en service et réglages","Prise en main par vos équipes"],
-    spec:[["Livrables","Schéma de la centrale"],["Contrôle","Essais en charge"]]},
-   {id:"maintenance", name:"Maintenance", lead:"Un entretien planifié pour éviter l'arrêt de production et maîtriser la consommation.",
-    a:["Vidange et remplacement des filtres","Contrôle des séparateurs huile","Recherche de fuites","Contrôle des sécurités"],
-    b:["Contrat annuel adapté au nombre d'heures","Visites planifiées","Rapport d'intervention après chaque visite","Suivi des heures de marche"],
-    spec:[["Rythme courant","2 000 à 4 000 h"],["Fuites","Détection ultrasons"]]},
-   {id:"remplacement", name:"Remplacement", lead:"Votre compresseur est en fin de vie ? Nous le remplaçons en limitant l'arrêt.",
-    a:["Bilan de l'installation existante","Proposition d'une machine adaptée","Dépose et reprise de l'ancien matériel","Pose et mise en service"],
-    b:["Comparatif de consommation avant / après","Intervention planifiée hors production","Location possible pendant les travaux"],
-    spec:[["Objectif","Moins de kWh par m³"]]},
-   {id:"reparation", name:"Réparation", lead:"Diagnostic et réparation de compresseurs toutes marques.",
-    a:["Panne, alarme ou arrêt machine","Surchauffe et consommation d'huile","Perte de pression ou de débit","Remplacement de bloc vis ou de moteur"],
-    b:["Appel et premier diagnostic","Intervention sur site ou en atelier","Devis avant réparation","Remise en service et essais"],
-    spec:[["Marques","Toutes marques"]]}
-  ]},
- {id:"reseau", name:"Réseau d'air", tag:"Distribution de l'air comprimé dans vos bâtiments, de la centrale au poste de travail.",
-  subs:[
-   {id:"installation", name:"Installation", lead:"Un réseau bien dimensionné réduit les pertes de charge et les fuites.",
-    a:["Tubes aluminium à raccords rapides","Boucles et antennes","Descentes et prises d'air","Filtres-régulateurs aux points d'usage"],
-    b:["Relevé des postes à alimenter","Calcul des diamètres","Pose du réseau","Essai d'étanchéité et réception"],
-    spec:[["Diamètres","20 à 110 mm"],["Perte de charge visée","< 0,1 bar"]]}
-  ]},
- {id:"azote", name:"Générateur d'azote", tag:"Produire votre azote sur site au lieu de louer des bouteilles.",
-  subs:[
-   {id:"installation", name:"Installation", lead:"Générateurs à membrane ou PSA, dimensionnés selon la pureté et le débit dont vous avez besoin.",
-    a:["Découpe laser","Emballage alimentaire","Gonflage de pneumatiques","Inertage et soudure"],
-    b:["Étude du besoin : pureté et débit","Choix membrane ou PSA","Installation et raccordement","Mise en service et analyse de pureté"],
-    spec:[["Pureté","95 % à 99,999 %"],["Technologie","PSA / membrane"]]},
-   {id:"diagnostic", name:"Diagnostic", lead:"Votre pureté baisse ou votre débit ne suffit plus ? Nous cherchons la cause.",
-    a:["Mesure de la pureté et du débit","Contrôle de l'air d'alimentation","Contrôle des tamis et vannes","Lecture des alarmes"],
-    b:["Intervention sur site","Rapport avec mesures","Préconisations chiffrées"],
-    spec:[["Mesure","Analyseur O₂ résiduel"]]},
-   {id:"remplacement", name:"Remplacement", lead:"Remplacement d'un générateur usé ou sous-dimensionné.",
-    a:["Tamis moléculaire en fin de vie","Besoin d'une pureté plus élevée","Augmentation de la production","Passage bouteilles vers générateur"],
-    b:["Bilan de l'existant","Proposition de remplacement","Dépose, pose et mise en service"],
-    spec:[["Objectif","Coût par m³ d'azote"]]}
-  ]},
- {id:"gainage", name:"Gainage & récupération d'air chaud", short:"Gainage / air chaud", tag:"Évacuer la chaleur du compresseur en été, la réutiliser en hiver.",
-  subs:[
-   {id:"installation", name:"Installation", lead:"Un compresseur transforme en chaleur la majeure partie de l'énergie qu'il consomme. Le gainage permet de la diriger où vous voulez.",
-    a:["Gaine d'extraction de l'air chaud","Volet été / hiver","Chauffage d'un atelier ou d'un entrepôt","Ventilation du local compresseur"],
-    b:["Mesure de la température du local","Calcul de la section de gaine","Pose de la gaine et des volets","Réglage et essais"],
-    spec:[["Énergie récupérable","jusqu'à 90 %"],["Effet","Machine moins chaude, plus durable"]]}
-  ]},
- {id:"occasion", name:"Occasion", tag:"Compresseurs d'occasion contrôlés et révisés dans notre atelier.",
-  subs:[
-   {id:"vente", name:"Vente", lead:"Une solution économique pour un besoin ponctuel, un atelier qui démarre ou une machine de secours.", occasion:true,
-    a:["Contrôle complet en atelier","Remplacement des consommables","Essais avant livraison"],
-    b:["Livraison et installation possibles","Reprise de votre ancien matériel","Stock mis à jour régulièrement"],
-    spec:[]}
-  ]},
- {id:"contact", name:"Contact", contact:true, tag:"Un projet, une panne, une question : écrivez-nous."}
+ {id:"air-comprime", name:"Air comprimé", subs:[
+   {id:"vente", name:"Vente", h:"Le bon compresseur, au bon débit", lead:"Nous dimensionnons votre compresseur selon votre consommation réelle, pas selon un catalogue.",
+    pts:["Compresseurs à vis et à pistons","Vitesse fixe ou variable","Sécheurs frigorifiques et par adsorption","Cuves, filtres et purgeurs"], spec:["7 à 13 bar","2,2 à 250 kW","Qualité d'air ISO 8573-1"]},
+   {id:"installation", name:"Installation", h:"Une centrale d'air prête à produire", lead:"Pose, raccordement et mise en service de votre centrale d'air comprimé.",
+    pts:["Implantation du local compresseur","Raccordement électrique et réseau","Évacuation des condensats","Mise en service et réglages"], spec:["Visite technique sur site","Essais en charge"]},
+   {id:"maintenance", name:"Maintenance", h:"Pas d'arrêt de production imprévu", lead:"Un entretien planifié pour fiabiliser vos machines et maîtriser leur consommation.",
+    pts:["Vidange et remplacement des filtres","Contrôle des séparateurs d'huile","Recherche de fuites","Rapport après chaque visite"], spec:["Contrat annuel","Détection de fuites par ultrasons"]},
+   {id:"remplacement", name:"Remplacement", h:"Remplacer sans arrêter l'atelier", lead:"Votre compresseur est en fin de vie ? Nous le remplaçons en limitant l'arrêt.",
+    pts:["Bilan de l'installation existante","Machine adaptée à votre besoin","Dépose et reprise de l'ancien matériel","Intervention hors production"], spec:["Comparatif kWh avant / après"]},
+   {id:"reparation", name:"Réparation", h:"Une panne ? On intervient", lead:"Diagnostic et réparation de compresseurs toutes marques, sur site ou en atelier.",
+    pts:["Arrêt machine et alarmes","Surchauffe, consommation d'huile","Perte de pression ou de débit","Bloc vis, moteur, électronique"], spec:["Toutes marques","Devis avant réparation"]}
+ ]},
+ {id:"reseau", name:"Réseau d'air", subs:[
+   {id:"installation", name:"Installation", h:"Un réseau d'air sans pertes", lead:"Un réseau bien dimensionné réduit les pertes de charge et les fuites, de la centrale jusqu'au poste de travail.",
+    pts:["Tubes aluminium à raccords rapides","Boucles et antennes","Descentes et prises d'air","Essai d'étanchéité et réception"], spec:["Diamètres 20 à 110 mm","Perte de charge visée < 0,1 bar"]}
+ ]},
+ {id:"azote", name:"Générateur d'azote", subs:[
+   {id:"installation", name:"Installation", h:"Votre azote, produit sur place", lead:"Générateurs PSA ou à membrane, dimensionnés selon la pureté et le débit dont vous avez besoin.",
+    pts:["Découpe laser","Emballage alimentaire","Gonflage de pneumatiques","Inertage et soudure"], spec:["Pureté 95 % à 99,999 %","PSA / membrane"]},
+   {id:"diagnostic", name:"Diagnostic", h:"Pureté en baisse ? On mesure", lead:"Nous cherchons pourquoi votre pureté baisse ou pourquoi votre débit ne suffit plus.",
+    pts:["Mesure de la pureté et du débit","Contrôle de l'air d'alimentation","Contrôle des tamis et des vannes","Rapport avec préconisations"], spec:["Analyseur O₂ résiduel"]},
+   {id:"remplacement", name:"Remplacement", h:"Un générateur à la hauteur", lead:"Remplacement d'un générateur usé ou devenu trop petit pour votre production.",
+    pts:["Tamis moléculaire en fin de vie","Besoin d'une pureté plus élevée","Hausse de la production","Passage des bouteilles au générateur"], spec:["Coût au m³ d'azote"]}
+ ]},
+ {id:"gainage", name:"Récupération d'air chaud", short:"Air chaud", subs:[
+   {id:"installation", name:"Installation", h:"La chaleur du compresseur, utile", lead:"Un compresseur transforme en chaleur l'essentiel de l'énergie qu'il consomme. Le gainage la dirige où vous en avez besoin.",
+    pts:["Gaine d'extraction de l'air chaud","Volet été / hiver","Chauffage d'atelier ou d'entrepôt","Ventilation du local compresseur"], spec:["Jusqu'à 90 % d'énergie récupérable"]}
+ ]},
+ {id:"occasion", name:"Occasion", subs:[
+   {id:"vente", name:"Vente", h:"Compresseurs d'occasion révisés", lead:"Une solution économique pour démarrer, compléter ou sécuriser votre production.", occasion:true,
+    pts:["Contrôle complet en atelier","Consommables remplacés","Essais avant livraison","Reprise de votre ancien matériel"], spec:[]}
+ ]},
+ {id:"contact", name:"Contact", contact:true}
 ];
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let state = {cat:"accueil", sub:{}};
+const state = {cat:"accueil", sub:{}};
 
-function renderTabs(){
-  const all = [{id:"accueil",name:"Accueil"}, ...CATS];
-  $("#tabs").innerHTML = all.map(c =>
-    `<button class="tab" role="tab" id="tab-${c.id}" aria-selected="${c.id===state.cat}" data-cat="${c.id}">${esc(c.short||c.name)}</button>`).join("");
+function bg(id){ return `background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#062a5e 0%,#0047a6 55%,#0a5cc4 100%)`; }
+
+function renderMenu(){
+  const items = [...CATS.filter(c=>!c.contact)];
+  $("#menu").innerHTML = [...items, CATS.find(c=>c.contact)].map(c =>
+    `<li><button class="nav-btn" data-cat="${c.id}" ${c.id===state.cat?'aria-current="page"':''}>${esc(c.short||c.name)}</button></li>`).join("");
 }
 
 function render(){
-  renderTabs();
-  const w = $("#win");
+  renderMenu();
+  const m = $("#main");
   if(state.cat==="accueil"){
-    w.innerHTML = `<div class="bar"><h1>Bienvenue chez Air-Tech</h1><p>Air comprimé, réseaux, azote et récupération de chaleur.</p><button class="cta" data-devis>Demander un devis</button></div>
-    <div class="home"><p class="lead">Air-Tech vend, installe, entretient et répare vos équipements d'air comprimé. Choisissez une catégorie pour voir nos prestations.</p>
-    <div class="grid">${CATS.filter(c=>!c.contact).map(c=>`<button class="tile" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div></div>`;
+    m.innerHTML = `<section class="hero" style="${bg('accueil')}">
+      <div class="copy gut"><span class="eyebrow">Air-Tech</span>
+        <h1>L'air comprimé, de la vente au dépannage</h1>
+        <p class="lead">Compresseurs, réseaux d'air, générateurs d'azote et récupération de chaleur : un seul interlocuteur pour vos installations.</p>
+        <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="air-comprime">Nos prestations</button></div></div>
+      <div class="cards">${CATS.filter(c=>!c.contact).map(c=>`<button class="card" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div>
+    </section>`;
     return;
   }
   const c = CATS.find(x=>x.id===state.cat);
   if(c.contact){
-    w.innerHTML = `<div class="bar"><h1>Contact</h1><p>${esc(c.tag)}</p></div>
-    <div class="home contact"><dl>
-      <dt>Adresse</dt><dd>À compléter</dd><dt>Téléphone</dt><dd>À compléter</dd><dt>E-mail</dt><dd>À compléter</dd><dt>Zone d'intervention</dt><dd>À compléter</dd><dt>Horaires</dt><dd>À compléter</dd></dl>
-      <button class="cta solid" data-devis>Demander un devis</button></div>`;
+    m.innerHTML = `<section class="hero" style="${bg('contact')}">
+      <div class="copy gut"><span class="eyebrow">Contact</span><h1>Parlons de votre installation</h1>
+      <dl class="facts"><dt>Adresse</dt><dd>À compléter</dd><dt>Téléphone</dt><dd>À compléter</dd><dt>E-mail</dt><dd>À compléter</dd><dt>Zone d'intervention</dt><dd>À compléter</dd><dt>Horaires</dt><dd>À compléter</dd></dl>
+      <div class="actions"><button class="pill" data-devis>Demander un devis</button></div></div>
+      <div class="subbar gut" aria-hidden="true" style="visibility:hidden"><button>.</button></div></section>`;
     return;
   }
   const sid = state.sub[c.id] || c.subs[0].id;
   const s = c.subs.find(x=>x.id===sid);
-  w.innerHTML = `<div class="bar"><h1>${esc(c.name)}</h1><p>${esc(c.tag)}</p><button class="cta" data-devis>Demander un devis</button></div>
-  <div class="body">
-    <div class="side" role="tablist" aria-label="Prestations"><div class="lbl">Prestations</div>
-      ${c.subs.map(x=>`<button class="sub" role="tab" aria-selected="${x.id===sid}" data-sub="${x.id}">${esc(x.name)}</button>`).join("")}</div>
-    <div class="pane" role="tabpanel">
-      <h2>${esc(s.name)}</h2><p class="lead">${esc(s.lead)}</p>
-      ${s.occasion ? occasionTable() : ""}
-      <div class="cols"><div><h3>${s.occasion?"Nos engagements":"Ce que nous traitons"}</h3><ul>${s.a.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>
-      <div><h3>${s.occasion?"Services":"Déroulement"}</h3><ul>${s.b.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div></div>
-      ${s.spec.length?`<div class="spec">${s.spec.map(([k,v])=>`<span>${esc(k)} : <b>${esc(v)}</b></span>`).join("")}</div>`:"<div style='height:22px'></div>"}
-      <button class="cta solid" data-devis>Demander un devis – ${esc(s.name)}</button>
-    </div></div>`;
+  m.innerHTML = `<section class="hero" style="${bg(c.id)}">
+    <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)} · ${esc(s.name)}</span>
+      <h1>${esc(s.h)}</h1><p class="lead">${esc(s.lead)}</p>
+      ${s.occasion?stock():""}
+      <ul class="points">${s.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+      ${s.spec.length?`<div class="chips">${s.spec.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}
+      <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div></div>
+    <div class="subbar gut" role="tablist" aria-label="Prestations"><span class="lbl">Prestations</span>
+      ${c.subs.map(x=>`<button role="tab" aria-selected="${x.id===sid}" data-sub="${x.id}">${esc(x.name)}</button>`).join("")}</div>
+  </section>`;
 }
 
-function occasionTable(){
+function stock(){
   const rows=[["Compresseur à vis","11 kW","10 bar","Révisé"],["Compresseur à vis + sécheur","22 kW","8 bar","Révisé"],["Compresseur à pistons","4 kW","10 bar","Révisé"]];
-  return `<div class="tbl"><table><thead><tr><th>Matériel</th><th>Puissance</th><th>Pression</th><th>État</th></tr></thead><tbody>
-  ${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
-  <p class="note" style="margin:0 0 20px">Exemples de fiches : le stock réel est à renseigner.</p>`;
+  return `<div class="stock-wrap"><table class="stock"><thead><tr><th>Matériel</th><th>Puissance</th><th>Pression</th><th>État</th></tr></thead><tbody>${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="note">Exemples : stock réel à renseigner.</p>`;
 }
 
-function go(cat, sub){
-  state.cat = cat; if(sub) state.sub[cat]=sub;
+function go(cat){
+  state.cat = cat; closeNav();
   try{ history.replaceState(null,"","#"+cat); }catch(e){}
   render();
 }
+function closeNav(){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
 
 document.addEventListener("click", e=>{
   const t = e.target.closest("[data-cat],[data-sub],[data-devis]"); if(!t) return;
-  if(t.dataset.devis!==undefined) return openDevis();
+  if(t.dataset.devis!==undefined) return openDevis(t.dataset.devis);
   if(t.dataset.cat) return go(t.dataset.cat);
   if(t.dataset.sub){ state.sub[state.cat]=t.dataset.sub; render(); }
 });
-document.querySelector('.logo').addEventListener("click", e=>{ e.preventDefault(); go("accueil"); });
+$("#home-link").addEventListener("click", e=>{ e.preventDefault(); go("accueil"); });
+$("#burger").addEventListener("click", ()=>{ const o=$("#nav").classList.toggle("open"); $("#burger").setAttribute("aria-expanded", String(o)); });
+$("#notice-x").addEventListener("click", ()=>{ $("#notice").hidden = true; });
 
 /* ---------- Devis ---------- */
 const fc=$("#f-cat"), fs=$("#f-srv");
 fc.innerHTML = CATS.filter(c=>!c.contact).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
 function fillSrv(){ const c=CATS.find(x=>x.id===fc.value); fs.innerHTML=c.subs.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join(""); }
 fc.addEventListener("change", fillSrv);
-function openDevis(){
-  const c = CATS.find(x=>x.id===state.cat && !x.contact);
-  fc.value = c ? c.id : CATS[0].id; fillSrv();
-  if(c) fs.value = state.sub[c.id] || c.subs[0].id;
+function openDevis(preset){
+  let [cid, sid] = (preset||"").split(":");
+  if(!cid){ const c = CATS.find(x=>x.id===state.cat && !x.contact); cid = c ? c.id : CATS[0].id; sid = c ? (state.sub[c.id]||c.subs[0].id) : ""; }
+  fc.value = cid; fillSrv(); if(sid) fs.value = sid;
   $("#ok").hidden = true; $("#overlay").hidden = false; $("#f-nom").focus();
 }
 function closeDevis(){ $("#overlay").hidden = true; }
-$("#mClose").addEventListener("click", closeDevis);
+$("#m-close").addEventListener("click", closeDevis);
 $("#overlay").addEventListener("click", e=>{ if(e.target.id==="overlay") closeDevis(); });
-document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeDevis(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDevis(); closeNav(); } });
 $("#devis").addEventListener("submit", e=>{ e.preventDefault(); $("#ok").hidden=false; });
 
 const h = (location.hash||"").slice(1);
-state.cat = [ "accueil", ...CATS.map(c=>c.id)].includes(h) ? h : "accueil";
+state.cat = ["accueil", ...CATS.map(c=>c.id)].includes(h) ? h : "accueil";
 render();
 </script>
-</body></html>
+</body>
+</html>

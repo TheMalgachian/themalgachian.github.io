@@ -1,0 +1,14 @@
+Photos du site Air-Tech
+=======================
+Déposez ici les photos (format JPG, paysage, environ 2000 px de large) avec exactement ces noms :
+
+  accueil.jpg       Page d'accueil
+  air-comprime.jpg  Air comprimé
+  reseau.jpg        Réseau d'air
+  azote.jpg         Générateur d'azote
+  gainage.jpg       Récupération d'air chaud
+  occasion.jpg      Occasion
+  contact.jpg       Contact
+
+Tant qu'une photo manque, un fond bleu illustré s'affiche à sa place.
+Le texte est posé à gauche : choisissez des photos dont le sujet est plutôt à droite.
