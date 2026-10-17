@@ -36,8 +36,8 @@ header{height:76px;flex:none;display:flex;align-items:center;justify-content:spa
 .logo{display:inline-flex;flex:none;line-height:0}
 .logo svg{height:50px;width:auto;display:block}
 @media (max-width:420px){.logo svg{height:40px}}
-nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
-.nav-btn{background:none;border:0;color:#fff;padding:10px 12px;font-size:16px;white-space:nowrap;position:relative;opacity:.9}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav-btn{background:none;border:0;color:#fff;padding:10px 11px;font-size:15.5px;white-space:nowrap;position:relative;opacity:.9}
 .nav-btn::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:#fff;transform:scaleX(0);transition:transform .2s}
 .nav-btn:hover{opacity:1}
 .nav-btn:hover::after,.nav-btn[aria-current="page"]::after{transform:scaleX(1)}
@@ -96,6 +96,46 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .stock th{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .note{font-size:13px;color:var(--muted);margin:0}
 
+/* ---------- Pages Notre travail / Notre histoire ---------- */
+.page{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden}
+.page h1{font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1.1;margin:4px 0 6px;letter-spacing:-.01em}
+.page .lead{color:var(--muted);margin:0;font-size:17px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;padding-block:26px 18px}
+.filters{display:flex;gap:4px;flex-wrap:wrap}
+.filters button{background:none;border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:14px}
+.filters button:hover{background:var(--blue-soft)}
+.filters button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.gallery{flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;align-content:start;padding-bottom:24px}
+.shot{background:none;border:0;padding:0;text-align:left;display:flex;flex-direction:column;gap:10px}
+.shot-img{display:block;aspect-ratio:4/3;max-width:100%;background-size:cover;background-position:center;position:relative;transition:filter .2s}
+.shot:hover .shot-img{filter:brightness(1.08)}
+.shot:hover strong{color:var(--blue)}
+.tag{position:absolute;top:10px;left:10px;background:#fff;color:var(--blue);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.shot-txt{display:flex;flex-direction:column;gap:1px}
+.shot-txt strong{font-weight:500;font-size:16px}
+.shot-txt small{font-size:13px;color:var(--muted)}
+.lb{max-width:880px}
+.lb-img{aspect-ratio:16/10;max-width:100%;background-size:cover;background-position:center}
+.lb-body{padding:16px 26px 22px}
+.lb-body p{margin:0 0 6px}
+.lb-meta{font-size:13px;color:var(--blue);font-weight:600;letter-spacing:.04em}
+
+.story{overflow:auto}
+.story-top{display:grid;grid-template-columns:minmax(200px,300px) minmax(0,1fr);gap:40px;align-items:center;padding-block:28px 10px;flex:1;min-height:0}
+.portrait{aspect-ratio:4/5;max-width:100%;max-height:100%;background-size:cover;background-position:center}
+.bio{max-width:62ch}
+.bio p{margin:0 0 10px}
+.bio .role{color:var(--blue);font-weight:500;margin-bottom:16px}
+.bio blockquote{margin:16px 0 0;padding-left:16px;border-left:3px solid var(--blue);font-size:19px;font-weight:300;color:var(--ink)}
+.timeline{list-style:none;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding-block:22px 26px;position:relative}
+.timeline::before{content:"";position:absolute;left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));top:31px;height:3px;background:var(--blue)}
+.timeline li{position:relative;padding-top:26px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.timeline li::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.timeline li:last-child::before{background:var(--blue)}
+.timeline .year{font-size:22px;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
+.timeline strong{font-weight:500}
+.timeline small{font-size:14px;color:var(--muted)}
+
 /* ---------- Fenêtre devis ---------- */
 .overlay{position:fixed;inset:0;background:rgba(0,20,55,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
 .modal{background:var(--paper);color:var(--ink);width:100%;max-width:580px;max-height:100%;overflow:auto;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,20,55,.5)}
@@ -112,16 +152,18 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .ok{grid-column:1/-1;margin:0;background:var(--blue-soft);border-left:3px solid var(--blue);padding:10px 14px;font-size:14px}
 
 /* ---------- Écrans moyens et mobiles ---------- */
-@media (max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(3){border-right:0}.card:nth-child(n+4){border-top:1px solid var(--line)}}
-@media (max-width:900px){
-  body{overflow:auto;height:auto;min-height:100%}
-  html{height:auto}
+@media (max-width:1240px){
   .burger{display:block}
-  nav{position:absolute;top:76px;left:0;right:0;background:var(--blue);display:none;box-shadow:0 12px 24px -12px rgba(0,20,55,.4)}
+  nav{position:absolute;top:76px;left:0;right:0;background:var(--blue);display:none;box-shadow:0 12px 24px -12px rgba(0,20,55,.4);z-index:6}
   nav.open{display:block}
   nav ul{flex-direction:column;padding:4px max(16px,env(safe-area-inset-left,0px)) 14px}
   .nav-btn{width:100%;text-align:left;padding:12px 0;font-size:18px}
   .nav-btn::after{left:0;right:auto;width:28px}
+}
+@media (max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(3){border-right:0}.card:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:900px){
+  body{overflow:auto;height:auto;min-height:100%}
+  html{height:auto}
   .notice{padding-right:48px;font-size:14px}
   .notice>span{display:none}
   .hero{position:relative;display:flex;flex-direction:column}
@@ -131,6 +173,15 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
   .cards{grid-template-columns:1fr 1fr}
   .card{border-right:0!important;border-top:1px solid var(--line)}
   .modal form{grid-template-columns:1fr}
+  .page{position:relative;overflow:visible}
+  .gallery{overflow:visible}
+  .story-top{grid-template-columns:1fr;gap:20px}
+  .portrait{max-width:260px}
+  .timeline{grid-template-columns:1fr;gap:18px}
+  .timeline.gut{padding-left:max(48px,env(safe-area-inset-left,0px))}
+  .timeline::before{left:max(25px,env(safe-area-inset-left,0px));right:auto;width:3px;top:24px;bottom:30px;height:auto}
+  .timeline li{padding-top:0}
+  .timeline li::before{left:-29px;top:6px}
   .gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
 @media (prefers-reduced-motion:no-preference){
@@ -174,6 +225,14 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
   </div>
 </div>
 
+<div class="overlay" id="lightbox" hidden>
+  <div class="modal lb" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+    <div class="modal-head"><h2 id="lb-title">Chantier</h2><button type="button" id="lb-close" aria-label="Fermer">×</button></div>
+    <div class="lb-img" id="lb-img"></div>
+    <div class="lb-body"><p class="lb-meta" id="lb-meta"></p><p id="lb-text"></p></div>
+  </div>
+</div>
+
 <script>
 /* Photos : déposez vos images dans le dossier images/ avec ces noms. Sans photo, un fond bleu illustré s'affiche. */
 const IMG = id => `images/${id}.jpg`;
@@ -211,7 +270,43 @@ const CATS = [
    {id:"vente", name:"Vente", h:"Compresseurs d'occasion révisés", lead:"Une solution économique pour démarrer, compléter ou sécuriser votre production.", occasion:true,
     pts:["Contrôle complet en atelier","Consommables remplacés","Essais avant livraison","Reprise de votre ancien matériel"], spec:[]}
  ]},
+ {id:"travail", name:"Notre travail", page:true},
+ {id:"histoire", name:"Notre histoire", page:true},
  {id:"contact", name:"Contact", contact:true}
+];
+
+/* ================================================================
+   NOTRE TRAVAIL : un chantier terminé = une ligne.
+   Photo à déposer dans images/chantiers/ (format JPG, paysage).
+   cat = air-comprime, reseau, azote, gainage ou occasion.
+   Supprimez les lignes d'exemple quand vous ajoutez les vôtres.
+   ================================================================ */
+const CHANTIERS = [
+  {photo:"chantier-01.jpg", titre:"Centrale d'air comprimé 37 kW", lieu:"Ville à compléter", annee:"2025", cat:"air-comprime", texte:"Exemple : remplacement de deux compresseurs à pistons par un compresseur à vis à vitesse variable et un sécheur.", exemple:true},
+  {photo:"chantier-02.jpg", titre:"Réseau aluminium 400 m", lieu:"Ville à compléter", annee:"2025", cat:"reseau", texte:"Exemple : boucle en diamètre 40 mm et 18 descentes dans un atelier de mécanique.", exemple:true},
+  {photo:"chantier-03.jpg", titre:"Générateur d'azote PSA", lieu:"Ville à compléter", annee:"2024", cat:"azote", texte:"Exemple : production d'azote à 99,9 % pour une machine de découpe laser.", exemple:true},
+  {photo:"chantier-04.jpg", titre:"Gainage et récupération de chaleur", lieu:"Ville à compléter", annee:"2024", cat:"gainage", texte:"Exemple : évacuation de l'air chaud en été et chauffage de l'atelier en hiver.", exemple:true},
+  {photo:"chantier-05.jpg", titre:"Contrat de maintenance", lieu:"Ville à compléter", annee:"2024", cat:"air-comprime", texte:"Exemple : entretien de trois compresseurs sur un site de production.", exemple:true},
+  {photo:"chantier-06.jpg", titre:"Installation complète", lieu:"Ville à compléter", annee:"2023", cat:"air-comprime", texte:"Exemple : local compresseur, sécheur, filtration et réseau pour une nouvelle usine.", exemple:true}
+];
+
+/* ================================================================
+   NOTRE HISTOIRE : le dirigeant et la chronologie.
+   Photo du dirigeant : images/dirigeant.jpg (format portrait).
+   ================================================================ */
+const DIRIGEANT = {
+  nom:"Prénom Nom",
+  role:"Fondateur et dirigeant d'Air-Tech",
+  texte:["Présentez ici le parcours du dirigeant : sa formation, ses années d'expérience dans l'air comprimé, les entreprises où il a travaillé.",
+         "Expliquez pourquoi il a créé Air-Tech et ce qui compte pour lui : la réactivité, le conseil, le travail bien fait."],
+  citation:"Une phrase du dirigeant, entre guillemets, qui résume sa façon de travailler."
+};
+const CHRONOLOGIE = [
+  {annee:"AAAA", titre:"Les débuts", texte:"Premières années d'expérience dans l'air comprimé."},
+  {annee:"AAAA", titre:"Création d'Air-Tech", texte:"Lancement de l'entreprise et premiers clients."},
+  {annee:"AAAA", titre:"Premier atelier", texte:"Ouverture d'un atelier pour la réparation et la révision des machines."},
+  {annee:"AAAA", titre:"Nouvelles activités", texte:"Générateurs d'azote et récupération d'air chaud."},
+  {annee:"Aujourd'hui", titre:"Air-Tech", texte:"Vente, installation, maintenance et dépannage."}
 ];
 
 const $ = s => document.querySelector(s);
@@ -221,8 +316,7 @@ const state = {cat:"accueil", sub:{}};
 function bg(id){ return `background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
 
 function renderMenu(){
-  const items = [...CATS.filter(c=>!c.contact)];
-  $("#menu").innerHTML = [...items, CATS.find(c=>c.contact)].map(c =>
+  $("#menu").innerHTML = CATS.map(c =>
     `<li><button class="nav-btn" data-cat="${c.id}" ${c.id===state.cat?'aria-current="page"':''}>${esc(c.short||c.name)}</button></li>`).join("");
 }
 
@@ -235,11 +329,13 @@ function render(){
         <h1>L'air comprimé, de la vente au dépannage</h1>
         <p class="lead">Compresseurs, réseaux d'air, générateurs d'azote et récupération de chaleur : un seul interlocuteur pour vos installations.</p>
         <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="air-comprime">Nos prestations</button></div></div>
-      <div class="cards">${CATS.filter(c=>!c.contact).map(c=>`<button class="card" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div>
+      <div class="cards">${CATS.filter(c=>c.subs).map(c=>`<button class="card" data-cat="${c.id}"><strong>${esc(c.name)}</strong><small>${c.subs.map(s=>esc(s.name)).join(" · ")}</small></button>`).join("")}</div>
     </section>`;
     return;
   }
   const c = CATS.find(x=>x.id===state.cat);
+  if(c.id==="travail"){ m.innerHTML = travail(); return; }
+  if(c.id==="histoire"){ m.innerHTML = histoire(); return; }
   if(c.contact){
     m.innerHTML = `<section class="hero"><div class="visual" style="${bg('contact')}"></div>
       <div class="copy gut"><span class="eyebrow">Contact</span><h1>Parlons de votre installation</h1>
@@ -262,6 +358,46 @@ function render(){
   </section>`;
 }
 
+const CATNAME = id => (CATS.find(c=>c.id===id)||{}).name || "";
+function photo(src){ return `background-image:url('${src}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
+
+function travail(){
+  const f = state.filtre || "tout";
+  const used = [...new Set(CHANTIERS.map(x=>x.cat))];
+  const list = CHANTIERS.map((x,i)=>({...x,i})).filter(x=>f==="tout"||x.cat===f);
+  return `<section class="page">
+    <div class="page-head gut"><div><span class="eyebrow">Notre travail</span><h1>Nos chantiers terminés</h1>
+      <p class="lead">Quelques installations réalisées par Air-Tech. Cliquez sur une photo pour l'agrandir.</p></div>
+      <div class="filters" role="tablist" aria-label="Filtrer les chantiers">
+        ${[["tout","Tout"],...used.map(id=>[id,CATNAME(id)])].map(([id,n])=>`<button role="tab" aria-selected="${f===id}" data-filtre="${id}">${esc(n)}</button>`).join("")}</div></div>
+    <div class="gallery gut">${list.map(x=>`<button class="shot" data-shot="${x.i}">
+        <span class="shot-img" style="${photo('images/chantiers/'+x.photo)}">${x.exemple?'<span class="tag">Exemple</span>':''}</span>
+        <span class="shot-txt"><strong>${esc(x.titre)}</strong><small>${esc(CATNAME(x.cat))} · ${esc(x.lieu)} · ${esc(x.annee)}</small></span></button>`).join("")}</div>
+  </section>`;
+}
+
+function histoire(){
+  const d = DIRIGEANT;
+  return `<section class="page story">
+    <div class="story-top gut">
+      <div class="portrait" style="${photo('images/dirigeant.jpg')}" role="img" aria-label="Photo de ${esc(d.nom)}"></div>
+      <div class="bio"><span class="eyebrow">Notre histoire</span><h1>${esc(d.nom)}</h1><p class="role">${esc(d.role)}</p>
+        ${d.texte.map(t=>`<p>${esc(t)}</p>`).join("")}
+        <blockquote>« ${esc(d.citation.replace(/^[«"\s]+|[»"\s]+$/g,""))} »</blockquote></div>
+    </div>
+    <ol class="timeline gut">${CHRONOLOGIE.map(e=>`<li><span class="year">${esc(e.annee)}</span><strong>${esc(e.titre)}</strong><small>${esc(e.texte)}</small></li>`).join("")}</ol>
+  </section>`;
+}
+
+function openShot(i){
+  const x = CHANTIERS[i];
+  $("#lb-img").setAttribute("style", photo('images/chantiers/'+x.photo));
+  $("#lb-title").textContent = x.titre;
+  $("#lb-meta").textContent = `${CATNAME(x.cat)} · ${x.lieu} · ${x.annee}`;
+  $("#lb-text").textContent = x.texte;
+  $("#lightbox").hidden = false; $("#lb-close").focus();
+}
+
 function stock(){
   const rows=[["Compresseur à vis","11 kW","10 bar","Révisé"],["Compresseur à vis + sécheur","22 kW","8 bar","Révisé"],["Compresseur à pistons","4 kW","10 bar","Révisé"]];
   return `<div class="stock-wrap"><table class="stock"><thead><tr><th>Matériel</th><th>Puissance</th><th>Pression</th><th>État</th></tr></thead><tbody>${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="note">Exemples : stock réel à renseigner.</p>`;
@@ -275,7 +411,9 @@ function go(cat){
 function closeNav(){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
 
 document.addEventListener("click", e=>{
-  const t = e.target.closest("[data-cat],[data-sub],[data-devis]"); if(!t) return;
+  const t = e.target.closest("[data-cat],[data-sub],[data-devis],[data-filtre],[data-shot]"); if(!t) return;
+  if(t.dataset.filtre){ state.filtre=t.dataset.filtre; render(); return; }
+  if(t.dataset.shot!==undefined) return openShot(+t.dataset.shot);
   if(t.dataset.devis!==undefined) return openDevis(t.dataset.devis);
   if(t.dataset.cat) return go(t.dataset.cat);
   if(t.dataset.sub){ state.sub[state.cat]=t.dataset.sub; render(); }
@@ -286,19 +424,21 @@ $("#notice-x").addEventListener("click", ()=>{ $("#notice").hidden = true; });
 
 /* ---------- Devis ---------- */
 const fc=$("#f-cat"), fs=$("#f-srv");
-fc.innerHTML = CATS.filter(c=>!c.contact).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
+fc.innerHTML = CATS.filter(c=>c.subs).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
 function fillSrv(){ const c=CATS.find(x=>x.id===fc.value); fs.innerHTML=c.subs.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join(""); }
 fc.addEventListener("change", fillSrv);
 function openDevis(preset){
   let [cid, sid] = (preset||"").split(":");
-  if(!cid){ const c = CATS.find(x=>x.id===state.cat && !x.contact); cid = c ? c.id : CATS[0].id; sid = c ? (state.sub[c.id]||c.subs[0].id) : ""; }
+  if(!cid){ const c = CATS.find(x=>x.id===state.cat && x.subs); cid = c ? c.id : CATS[0].id; sid = c ? (state.sub[c.id]||c.subs[0].id) : ""; }
   fc.value = cid; fillSrv(); if(sid) fs.value = sid;
   $("#ok").hidden = true; $("#overlay").hidden = false; $("#f-nom").focus();
 }
 function closeDevis(){ $("#overlay").hidden = true; }
 $("#m-close").addEventListener("click", closeDevis);
 $("#overlay").addEventListener("click", e=>{ if(e.target.id==="overlay") closeDevis(); });
-document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDevis(); closeNav(); } });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDevis(); closeNav(); $("#lightbox").hidden=true; } });
+$("#lb-close").addEventListener("click", ()=>{ $("#lightbox").hidden=true; });
+$("#lightbox").addEventListener("click", e=>{ if(e.target.id==="lightbox") $("#lightbox").hidden=true; });
 $("#devis").addEventListener("submit", e=>{ e.preventDefault(); $("#ok").hidden=false; });
 
 const h = (location.hash||"").slice(1);

@@ -1,7 +1,8 @@
 Photos du site Air-Tech
 =======================
-Déposez ici les photos (format JPG, paysage, environ 2000 px de large) avec exactement ces noms :
+Format JPG. Gardez exactement ces noms de fichiers.
 
+Grandes images des onglets (paysage, environ 2000 px de large) :
   accueil.jpg       Page d'accueil
   air-comprime.jpg  Air comprimé
   reseau.jpg        Réseau d'air
@@ -10,5 +11,12 @@ Déposez ici les photos (format JPG, paysage, environ 2000 px de large) avec exa
   occasion.jpg      Occasion
   contact.jpg       Contact
 
+Notre histoire :
+  dirigeant.jpg     Photo du dirigeant (format portrait, environ 900 x 1125 px)
+
+Notre travail (dossier chantiers/) :
+  chantier-01.jpg, chantier-02.jpg, etc. (paysage, environ 1600 px de large)
+  Le titre, le lieu, l'année et le texte de chaque chantier se modifient
+  dans index.html, dans la liste CHANTIERS en haut du script.
+
 Tant qu'une photo manque, un fond bleu illustré s'affiche à sa place.
-Le texte est posé à gauche : choisissez des photos dont le sujet est plutôt à droite.
