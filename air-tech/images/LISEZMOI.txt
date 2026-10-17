@@ -19,4 +19,10 @@ Notre travail (dossier chantiers/) :
   Le titre, le lieu, l'année et le texte de chaque chantier se modifient
   dans index.html, dans la liste CHANTIERS en haut du script.
 
+Occasion (dossier occasions/) :
+  occasion-01.jpg, occasion-02.jpg, etc. (paysage, environ 1600 px de large)
+  Le titre, la puissance, la pression, l'année, les heures, le prix et le texte
+  se modifient dans index.html, dans la liste OCCASIONS en haut du script.
+  Ajoutez vendu:true pour afficher une machine comme vendue.
+
 Tant qu'une photo manque, un fond bleu illustré s'affiche à sa place.

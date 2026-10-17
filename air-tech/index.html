@@ -89,12 +89,6 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 24px;margin:4px 0 0;font-size:16px}
 .facts dt{color:var(--muted)}.facts dd{margin:0}
 
-/* Occasion */
-.stock{border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;min-width:420px}
-.stock-wrap{overflow-x:auto;max-width:100%}
-.stock th,.stock td{text-align:left;padding:5px 16px 5px 0;border-bottom:1px solid var(--line)}
-.stock th{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.note{font-size:13px;color:var(--muted);margin:0}
 
 /* ---------- Pages Notre travail / Notre histoire ---------- */
 .page{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden}
@@ -114,6 +108,10 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .shot-txt{display:flex;flex-direction:column;gap:1px}
 .shot-txt strong{font-weight:500;font-size:16px}
 .shot-txt small{font-size:13px;color:var(--muted)}
+.price{font-size:15px;font-weight:600;color:var(--blue);margin-top:2px}
+.tag.sold{background:var(--ink);color:#fff}
+.lb-specs{display:grid;grid-template-columns:auto 1fr;gap:4px 24px;margin:12px 0 16px;font-size:15px;font-variant-numeric:tabular-nums}
+.lb-specs dt{color:var(--muted)}.lb-specs dd{margin:0}
 .lb{max-width:880px}
 .lb-img{aspect-ratio:16/10;max-width:100%;background-size:cover;background-position:center}
 .lb-body{padding:16px 26px 22px}
@@ -229,7 +227,9 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
   <div class="modal lb" role="dialog" aria-modal="true" aria-labelledby="lb-title">
     <div class="modal-head"><h2 id="lb-title">Chantier</h2><button type="button" id="lb-close" aria-label="Fermer">×</button></div>
     <div class="lb-img" id="lb-img"></div>
-    <div class="lb-body"><p class="lb-meta" id="lb-meta"></p><p id="lb-text"></p></div>
+    <div class="lb-body"><p class="lb-meta" id="lb-meta"></p><p id="lb-text"></p>
+      <dl class="lb-specs" id="lb-specs" hidden></dl>
+      <button class="pill" type="button" id="lb-devis" hidden>Demander un devis pour cette machine</button></div>
   </div>
 </div>
 
@@ -291,6 +291,18 @@ const CHANTIERS = [
 ];
 
 /* ================================================================
+   OCCASION : une machine à vendre = une ligne.
+   Photo à déposer dans images/occasions/ (format JPG, paysage).
+   prix : laissez "" pour afficher « Prix sur demande ».
+   vendu:true affiche la machine comme vendue.
+   ================================================================ */
+const OCCASIONS = [
+  {photo:"occasion-01.jpg", titre:"Compresseur à vis 11 kW", puissance:"11 kW", pression:"10 bar", annee:"2018", heures:"12 000 h", prix:"", texte:"Exemple : révisé en atelier, huile et filtres neufs, essais réalisés.", exemple:true},
+  {photo:"occasion-02.jpg", titre:"Compresseur à vis 22 kW + sécheur", puissance:"22 kW", pression:"8 bar", annee:"2016", heures:"21 000 h", prix:"", texte:"Exemple : sur cuve, avec sécheur frigorifique intégré.", exemple:true},
+  {photo:"occasion-03.jpg", titre:"Compresseur à pistons 4 kW", puissance:"4 kW", pression:"10 bar", annee:"2020", heures:"3 500 h", prix:"", texte:"Exemple : cuve de 270 litres, idéal pour un petit atelier.", exemple:true}
+];
+
+/* ================================================================
    NOTRE HISTOIRE : le dirigeant et la chronologie.
    Photo du dirigeant : images/dirigeant.jpg (format portrait).
    ================================================================ */
@@ -335,6 +347,7 @@ function render(){
   }
   const c = CATS.find(x=>x.id===state.cat);
   if(c.id==="travail"){ m.innerHTML = travail(); return; }
+  if(c.id==="occasion"){ m.innerHTML = occasion(); return; }
   if(c.id==="histoire"){ m.innerHTML = histoire(); return; }
   if(c.contact){
     m.innerHTML = `<section class="hero"><div class="visual" style="${bg('contact')}"></div>
@@ -349,7 +362,6 @@ function render(){
   m.innerHTML = `<section class="hero"><div class="visual" style="${bg(c.id)}"></div>
     <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)} · ${esc(s.name)}</span>
       <h1>${esc(s.h)}</h1><p class="lead">${esc(s.lead)}</p>
-      ${s.occasion?stock():""}
       <ul class="points">${s.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
       ${s.spec.length?`<div class="chips">${s.spec.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}
       <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div></div>
@@ -389,19 +401,39 @@ function histoire(){
   </section>`;
 }
 
-function openShot(i){
-  const x = CHANTIERS[i];
-  $("#lb-img").setAttribute("style", photo('images/chantiers/'+x.photo));
-  $("#lb-title").textContent = x.titre;
-  $("#lb-meta").textContent = `${CATNAME(x.cat)} · ${x.lieu} · ${x.annee}`;
-  $("#lb-text").textContent = x.texte;
-  $("#lightbox").hidden = false; $("#lb-close").focus();
+function occasion(){
+  return `<section class="page">
+    <div class="page-head gut"><div><span class="eyebrow">Occasion</span><h1>Compresseurs d'occasion</h1>
+      <p class="lead">Machines contrôlées et révisées dans notre atelier. Cliquez sur une machine pour voir sa fiche.</p></div>
+      <div class="actions"><button class="pill ghost" data-devis="occasion:vente">Vous cherchez une machine précise ?</button></div></div>
+    <div class="gallery gut">${OCCASIONS.map((x,i)=>`<button class="shot" data-occ="${i}">
+        <span class="shot-img" style="${photo('images/occasions/'+x.photo)}">${x.vendu?'<span class="tag sold">Vendu</span>':x.exemple?'<span class="tag">Exemple</span>':''}</span>
+        <span class="shot-txt"><strong>${esc(x.titre)}</strong><small>${[x.puissance,x.pression,x.annee].filter(Boolean).map(esc).join(" · ")}</small>
+        <span class="price">${x.vendu?"Vendu":esc(x.prix||"Prix sur demande")}</span></span></button>`).join("")}</div>
+  </section>`;
 }
 
-function stock(){
-  const rows=[["Compresseur à vis","11 kW","10 bar","Révisé"],["Compresseur à vis + sécheur","22 kW","8 bar","Révisé"],["Compresseur à pistons","4 kW","10 bar","Révisé"]];
-  return `<div class="stock-wrap"><table class="stock"><thead><tr><th>Matériel</th><th>Puissance</th><th>Pression</th><th>État</th></tr></thead><tbody>${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="note">Exemples : stock réel à renseigner.</p>`;
+function openLb(title, img, meta, text, specs, devis){
+  $("#lb-img").setAttribute("style", img);
+  $("#lb-title").textContent = title;
+  $("#lb-meta").textContent = meta;
+  $("#lb-text").textContent = text;
+  $("#lb-specs").innerHTML = specs.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  $("#lb-specs").hidden = !specs.length;
+  $("#lb-devis").hidden = !devis;
+  $("#lightbox").hidden = false; $("#lb-close").focus();
 }
+function openShot(i){
+  const x = CHANTIERS[i];
+  openLb(x.titre, photo('images/chantiers/'+x.photo), `${CATNAME(x.cat)} · ${x.lieu} · ${x.annee}`, x.texte, [], false);
+}
+function openOcc(i){
+  const x = OCCASIONS[i];
+  const specs = [["Puissance",x.puissance],["Pression",x.pression],["Année",x.annee],["Heures de marche",x.heures],["Prix",x.vendu?"Vendu":(x.prix||"Sur demande")]].filter(r=>r[1]);
+  openLb(x.titre, photo('images/occasions/'+x.photo), "Occasion révisée", x.texte, specs, !x.vendu);
+  state.occ = x.titre;
+}
+
 
 function go(cat){
   state.cat = cat; closeNav();
@@ -411,9 +443,10 @@ function go(cat){
 function closeNav(){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
 
 document.addEventListener("click", e=>{
-  const t = e.target.closest("[data-cat],[data-sub],[data-devis],[data-filtre],[data-shot]"); if(!t) return;
+  const t = e.target.closest("[data-cat],[data-sub],[data-devis],[data-filtre],[data-shot],[data-occ]"); if(!t) return;
   if(t.dataset.filtre){ state.filtre=t.dataset.filtre; render(); return; }
   if(t.dataset.shot!==undefined) return openShot(+t.dataset.shot);
+  if(t.dataset.occ!==undefined) return openOcc(+t.dataset.occ);
   if(t.dataset.devis!==undefined) return openDevis(t.dataset.devis);
   if(t.dataset.cat) return go(t.dataset.cat);
   if(t.dataset.sub){ state.sub[state.cat]=t.dataset.sub; render(); }
@@ -438,6 +471,7 @@ $("#m-close").addEventListener("click", closeDevis);
 $("#overlay").addEventListener("click", e=>{ if(e.target.id==="overlay") closeDevis(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDevis(); closeNav(); $("#lightbox").hidden=true; } });
 $("#lb-close").addEventListener("click", ()=>{ $("#lightbox").hidden=true; });
+$("#lb-devis").addEventListener("click", ()=>{ $("#lightbox").hidden=true; openDevis("occasion:vente"); $("#f-msg").value = "Je suis intéressé par : " + (state.occ||""); });
 $("#lightbox").addEventListener("click", e=>{ if(e.target.id==="lightbox") $("#lightbox").hidden=true; });
 $("#devis").addEventListener("submit", e=>{ e.preventDefault(); $("#ok").hidden=false; });
 
