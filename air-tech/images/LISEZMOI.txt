@@ -12,7 +12,7 @@ Grandes images des onglets (paysage, environ 2000 px de large) :
   contact.jpg       Contact
 
 Accueil, onglet Partenaires (dossier partenaires/) :
-  partenaire-01.png, partenaire-02.png, etc. (logo PNG ou SVG, fond transparent)
+  eole-france.png, beko.png, richardson.png (logo PNG, fond transparent)
   Les noms et textes de l'accueil (présentation, chiffres, engagements,
   partenaires, infos pratiques) se modifient dans index.html, dans les listes
   ENTREPRISE, ENGAGEMENTS, PARTENAIRES et INFOS en haut du script.

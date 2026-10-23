@@ -98,9 +98,9 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .engage div{border-top:3px solid var(--blue);padding-top:10px}
 .engage strong{font-weight:600;display:block;margin-bottom:2px}
 .engage p{color:var(--muted);font-size:15px}
-.partners{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.partners{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;width:100%}
 .partner{display:flex;flex-direction:column;gap:6px}
-.plogo{height:84px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;padding:12px;color:var(--muted);font-weight:500}
+.plogo{height:84px;font-size:18px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;padding:12px;color:var(--muted);font-weight:500}
 .plogo img{max-height:100%;max-width:100%;object-fit:contain}
 .plogo img+span{display:none}
 .partner small{font-size:13px;color:var(--muted)}
@@ -334,10 +334,9 @@ const ENGAGEMENTS = [
   ["Conseil énergie","Nous vous aidons à réduire la consommation de votre installation."]
 ];
 const PARTENAIRES = [
-  {nom:"Partenaire 1", logo:"partenaire-01.png", texte:"Fabricant de compresseurs"},
-  {nom:"Partenaire 2", logo:"partenaire-02.png", texte:"Traitement de l'air"},
-  {nom:"Partenaire 3", logo:"partenaire-03.png", texte:"Réseaux aluminium"},
-  {nom:"Partenaire 4", logo:"partenaire-04.png", texte:"Générateurs d'azote"}
+  {nom:"Éole France", logo:"eole-france.png", texte:""},
+  {nom:"BEKO", logo:"beko.png", texte:""},
+  {nom:"Richardson", logo:"richardson.png", texte:""}
 ];
 const INFOS = [
   ["Adresse","Chemin du Puits Perret, 69210 Saint-Pierre-la-Palud"],
@@ -446,7 +445,7 @@ function accueil(){
   } else if(t==="partenaires"){
     body = `<span class="eyebrow">Partenaires</span><h1>Nos partenaires</h1>
       <p class="lead">Nous travaillons avec des fabricants et fournisseurs reconnus.</p>
-      <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span><small>${esc(x.texte)}</small></div>`).join("")}</div>`;
+      <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span>${x.texte?`<small>${esc(x.texte)}</small>`:""}</div>`).join("")}</div>`;
   } else {
     body = `<span class="eyebrow">Infos pratiques</span><h1>Bon à savoir</h1>
       <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${infoVal(k,v)}</dd>`).join("")}</dl>
