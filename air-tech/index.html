@@ -175,7 +175,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .ok{grid-column:1/-1;margin:0;background:var(--blue-soft);border-left:3px solid var(--blue);padding:10px 14px;font-size:14px}
 
 /* ---------- Écrans moyens et mobiles ---------- */
-@media (max-width:1240px){
+@media (max-width:1340px){
   .burger{display:block}
   nav{position:absolute;top:76px;left:0;right:0;background:var(--blue);display:none;box-shadow:0 12px 24px -12px rgba(0,20,55,.4);z-index:6}
   nav.open{display:block}
@@ -300,6 +300,10 @@ const CATS = [
    {id:"vente", name:"Vente", h:"Compresseurs d'occasion révisés", lead:"Une solution économique pour démarrer, compléter ou sécuriser votre production.", occasion:true,
     pts:["Contrôle complet en atelier","Consommables remplacés","Essais avant livraison","Reprise de votre ancien matériel"], spec:[]}
  ]},
+ {id:"location", name:"Location", subs:[
+   {id:"location", name:"Location", h:"Du matériel, le temps qu'il faut", lead:"Panne, pic de production, chantier temporaire ou remplacement en cours : nous mettons à votre disposition du matériel de production d'air pour la durée dont vous avez besoin.",
+    pts:["Compresseurs","Sécheurs et filtres","Courte ou longue durée","Installation et mise en service"], spec:["Location sur devis"]}
+ ]},
  {id:"travail", name:"Notre travail", page:true},
  {id:"histoire", name:"Notre histoire", page:true},
  {id:"contact", name:"Contact", contact:true}
@@ -415,7 +419,7 @@ function render(){
   const sid = state.sub[c.id] || c.subs[0].id;
   const s = c.subs.find(x=>x.id===sid);
   m.innerHTML = `<section class="hero"><div class="visual" style="${bg(c.id)}"></div>
-    <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)} · ${esc(s.name)}</span>
+    <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)}${s.name!==c.name?" · "+esc(s.name):""}</span>
       <h1>${esc(s.h)}</h1><p class="lead">${esc(s.lead)}</p>
       <ul class="points">${s.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
       ${c.secteurs?`<div class="sectors"><span>Nos clients</span>${c.secteurs.map(x=>`<em>${esc(x)}</em>`).join("")}</div>`:""}

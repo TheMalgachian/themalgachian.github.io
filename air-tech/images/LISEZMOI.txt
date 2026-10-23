@@ -9,6 +9,7 @@ Grandes images des onglets (paysage, environ 2000 px de large) :
   azote.jpg         Générateur d'azote
   gainage.jpg       Gainage compresseur
   occasion.jpg      Occasion
+  location.jpg      Location
   contact.jpg       Contact
 
 Accueil, onglet Partenaires (dossier partenaires/) :
