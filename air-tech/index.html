@@ -258,7 +258,8 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 
 <script>
 /* Photos : déposez vos images dans le dossier images/ avec ces noms. Sans photo, un fond bleu illustré s'affiche. */
-const IMG = id => `images/${id}.jpg`;
+const V = "2";  /* augmentez ce numéro quand vous remplacez une photo, pour forcer son rechargement */
+const IMG = id => `images/${id}.jpg?v=${V}`;
 
 const CATS = [
  {id:"air-comprime", name:"Air comprimé",
@@ -435,7 +436,7 @@ function render(){
 }
 
 const CATNAME = id => (CATS.find(c=>c.id===id)||{}).name || "";
-function photo(src){ return `background-image:url('${src}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
+function photo(src){ return `background-image:url('${src}?v=${V}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
 
 function infoVal(k,v){
   if(k==="Téléphone") return `<a class="info-link" href="tel:${esc(v.replace(/\s/g,""))}">${esc(v)}</a>`;
@@ -460,7 +461,7 @@ function accueil(){
   } else if(t==="partenaires"){
     body = `<span class="eyebrow">Partenaires</span><h1>Nos partenaires</h1>
       <p class="lead">Nous travaillons avec des fabricants et fournisseurs reconnus.</p>
-      <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span>${x.texte?`<small>${esc(x.texte)}</small>`:""}</div>`).join("")}</div>`;
+      <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}?v=${V}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span>${x.texte?`<small>${esc(x.texte)}</small>`:""}</div>`).join("")}</div>`;
   } else {
     body = `<span class="eyebrow">Infos pratiques</span><h1>Bon à savoir</h1>
       <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${infoVal(k,v)}</dd>`).join("")}</dl>
