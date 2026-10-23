@@ -260,7 +260,7 @@ const IMG = id => `images/${id}.jpg`;
 
 const CATS = [
  {id:"air-comprime", name:"Air comprimé",
-  secteurs:["Grands industriels","Agroalimentaire","Automobile","Scieries","Industrie médicale","Mécanique générale","Start-up"],
+  secteurs:["Grands industriels","Agroalimentaire","Automobile","Scieries","Industrie médicale","Mécanique générale","Soudage nucléaire","Start-up"],
   subs:[
    {id:"vente", name:"Vente", h:"Le bon compresseur, au bon débit", lead:"Nous dimensionnons votre compresseur selon votre consommation réelle. Sécheurs et filtres sont choisis selon la qualité d'air exigée par votre activité.",
     pts:["Compresseurs à vis et à pistons","Vitesse fixe ou variable","Sécheurs simples et sécheurs à billes","Filtres de toutes tailles, cuves et purgeurs"], spec:[]},
@@ -381,7 +381,8 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const state = {cat:"accueil", sub:{}};
 
-function bg(id){ return `background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
+const POS = {"air-comprime":"85% center"};  /* cadrage des photos, si besoin */
+function bg(id){ return `background-position:${POS[id]||'center'};background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
 
 function renderMenu(){
   $("#menu").innerHTML = [{id:"accueil",name:"Accueil"}, ...CATS].map(c =>
