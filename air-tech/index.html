@@ -136,7 +136,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .lb-specs{display:grid;grid-template-columns:auto 1fr;gap:4px 24px;margin:12px 0 16px;font-size:15px;font-variant-numeric:tabular-nums}
 .lb-specs dt{color:var(--muted)}.lb-specs dd{margin:0}
 .lb{max-width:880px}
-.lb-img{aspect-ratio:16/10;max-width:100%;background-size:cover;background-position:center}
+.lb-img{aspect-ratio:16/10;max-width:100%;max-height:70vh;background-size:contain,cover,cover;background-repeat:no-repeat;background-position:center;background-color:#0d1f3c}
 .lb-body{padding:16px 26px 22px}
 .lb-body p{margin:0 0 6px}
 .lb-meta{font-size:13px;color:var(--blue);font-weight:600;letter-spacing:.04em}
@@ -258,7 +258,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 
 <script>
 /* Photos : déposez vos images dans le dossier images/ avec ces noms. Sans photo, un fond bleu illustré s'affiche. */
-const V = "2";  /* augmentez ce numéro quand vous remplacez une photo, pour forcer son rechargement */
+const V = "3";  /* augmentez ce numéro quand vous remplacez une photo, pour forcer son rechargement */
 const IMG = id => `images/${id}.jpg?v=${V}`;
 
 const CATS = [
@@ -317,12 +317,15 @@ const CATS = [
    Supprimez les lignes d'exemple quand vous ajoutez les vôtres.
    ================================================================ */
 const CHANTIERS = [
-  {photo:"chantier-01.jpg", titre:"Centrale d'air comprimé 37 kW", lieu:"Ville à compléter", annee:"2025", cat:"air-comprime", texte:"Exemple : remplacement de deux compresseurs à pistons par un compresseur à vis à vitesse variable et un sécheur.", exemple:true},
-  {photo:"chantier-02.jpg", titre:"Réseau aluminium 400 m", lieu:"Ville à compléter", annee:"2025", cat:"reseau", texte:"Exemple : boucle en diamètre 40 mm et 18 descentes dans un atelier de mécanique.", exemple:true},
-  {photo:"chantier-03.jpg", titre:"Générateur d'azote PSA", lieu:"Ville à compléter", annee:"2024", cat:"azote", texte:"Exemple : production d'azote à 99,9 % pour une machine de découpe laser.", exemple:true},
-  {photo:"chantier-04.jpg", titre:"Gainage et récupération de chaleur", lieu:"Ville à compléter", annee:"2024", cat:"gainage", texte:"Exemple : évacuation de l'air chaud en été et chauffage de l'atelier en hiver.", exemple:true},
-  {photo:"chantier-05.jpg", titre:"Contrat de maintenance", lieu:"Ville à compléter", annee:"2024", cat:"air-comprime", texte:"Exemple : entretien de trois compresseurs sur un site de production.", exemple:true},
-  {photo:"chantier-06.jpg", titre:"Installation complète", lieu:"Ville à compléter", annee:"2023", cat:"air-comprime", texte:"Exemple : local compresseur, sécheur, filtration et réseau pour une nouvelle usine.", exemple:true}
+  {photo:"chantier-01.jpg", titre:"Local compresseurs avec gainage", lieu:"", annee:"", cat:"gainage", texte:"Gainage sur mesure pour capter et évacuer l'air chaud de deux compresseurs à vis."},
+  {photo:"chantier-02.jpg", titre:"Trois compresseurs sur gaine commune", lieu:"", annee:"", cat:"gainage", texte:"Compresseurs Éole France et BOGE raccordés à une gaine collectrice d'évacuation de l'air chaud."},
+  {photo:"chantier-03.jpg", titre:"Deux compresseurs à vis Éole", lieu:"", annee:"", cat:"air-comprime", texte:"Installation de deux compresseurs à vis avec leur gainage d'air chaud."},
+  {photo:"chantier-04.jpg", titre:"Centrale d'air comprimé complète", lieu:"", annee:"", cat:"reseau", texte:"Compresseurs, sécheur, filtration, cuves de stockage et réseau galvanisé."},
+  {photo:"chantier-05.jpg", titre:"Traitement de l'air BEKO", lieu:"", annee:"", cat:"air-comprime", texte:"Sécheur frigorifique, sécheur à billes, filtration et cuve de stockage."},
+  {photo:"chantier-06.jpg", titre:"Salle de compresseurs BOGE", lieu:"", annee:"", cat:"air-comprime", texte:"Compresseurs à vis BOGE, chacun équipé de sa gaine d'évacuation d'air chaud."},
+  {photo:"chantier-07.jpg", titre:"Gainage de grande hauteur", lieu:"", annee:"", cat:"gainage", texte:"Gaines galvanisées sur mesure, de la sortie des compresseurs jusqu'en toiture."},
+  {photo:"chantier-08.jpg", titre:"Générateurs d'azote Nitrocraft", lieu:"", annee:"", cat:"azote", texte:"Deux générateurs d'azote, alimentés par un compresseur scroll et une cuve de stockage."},
+  {photo:"chantier-09.jpg", titre:"Installation BEKO EVERDRY", lieu:"", annee:"", cat:"azote", texte:"Équipement BEKO avec filtration, armoire de commande et raccordement inox."}
 ];
 
 /* ================================================================
@@ -485,7 +488,7 @@ function travail(){
         ${[["tout","Tout"],...used.map(id=>[id,CATNAME(id)])].map(([id,n])=>`<button role="tab" aria-selected="${f===id}" data-filtre="${id}">${esc(n)}</button>`).join("")}</div></div>
     <div class="gallery gut">${list.map(x=>`<button class="shot" data-shot="${x.i}">
         <span class="shot-img" style="${photo('images/chantiers/'+x.photo)}">${x.exemple?'<span class="tag">Exemple</span>':''}</span>
-        <span class="shot-txt"><strong>${esc(x.titre)}</strong><small>${esc(CATNAME(x.cat))} · ${esc(x.lieu)} · ${esc(x.annee)}</small></span></button>`).join("")}</div>
+        <span class="shot-txt"><strong>${esc(x.titre)}</strong><small>${[CATNAME(x.cat),x.lieu,x.annee].filter(Boolean).map(esc).join(" · ")}</small></span></button>`).join("")}</div>
   </section>`;
 }
 
@@ -526,7 +529,7 @@ function openLb(title, img, meta, text, specs, devis){
 }
 function openShot(i){
   const x = CHANTIERS[i];
-  openLb(x.titre, photo('images/chantiers/'+x.photo), `${CATNAME(x.cat)} · ${x.lieu} · ${x.annee}`, x.texte, [], false);
+  openLb(x.titre, photo('images/chantiers/'+x.photo), [CATNAME(x.cat),x.lieu,x.annee].filter(Boolean).join(" · "), x.texte, [], false);
 }
 function openOcc(i){
   const x = OCCASIONS[i];
