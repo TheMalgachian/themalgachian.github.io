@@ -326,12 +326,12 @@ const PARTENAIRES = [
   {nom:"Partenaire 4", logo:"partenaire-04.png", texte:"Générateurs d'azote"}
 ];
 const INFOS = [
-  ["Zone d'intervention","À compléter (ex. : départements couverts)"],
-  ["Horaires","À compléter"],
-  ["Dépannage","À compléter (délai et numéro d'urgence)"],
+  ["Adresse","Chemin du Puits Perret, 69210 Saint-Pierre-la-Palud"],
   ["Téléphone","À compléter"],
   ["E-mail","À compléter"],
-  ["Adresse","À compléter"]
+  ["Zone d'intervention","À compléter (ex. : départements couverts)"],
+  ["Horaires","À compléter"],
+  ["Dépannage","À compléter (délai et numéro d'urgence)"]
 ];
 const HOME_TABS = [["presentation","Présentation"],["activites","Nos activités"],["engagements","Nos engagements"],["partenaires","Partenaires"],["infos","Infos pratiques"]];
 
@@ -388,7 +388,7 @@ function render(){
   if(c.contact){
     m.innerHTML = `<section class="hero"><div class="visual" style="${bg('contact')}"></div>
       <div class="copy gut"><span class="eyebrow">Contact</span><h1>Parlons de votre installation</h1>
-      <dl class="facts"><dt>Adresse</dt><dd>À compléter</dd><dt>Téléphone</dt><dd>À compléter</dd><dt>E-mail</dt><dd>À compléter</dd><dt>Zone d'intervention</dt><dd>À compléter</dd><dt>Horaires</dt><dd>À compléter</dd></dl>
+      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
       <div class="actions"><button class="pill" data-devis>Demander un devis</button></div></div>
       </section>`;
     return;
