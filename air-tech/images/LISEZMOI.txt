@@ -7,7 +7,7 @@ Grandes images des onglets (paysage, environ 2000 px de large) :
   air-comprime.jpg  Air comprimé
   reseau.jpg        Réseau d'air
   azote.jpg         Générateur d'azote
-  gainage.jpg       Récupération d'air chaud
+  gainage.jpg       Gainage compresseur
   occasion.jpg      Occasion
   contact.jpg       Contact
 
