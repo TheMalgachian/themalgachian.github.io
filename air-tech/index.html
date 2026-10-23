@@ -61,6 +61,8 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .points{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;margin:2px 0 0;padding:0;list-style:none;font-size:15px}
 .points li{padding-left:16px;position:relative}
 .points li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:2px;background:var(--blue)}
+.note-box{margin:2px 0 0;max-width:60ch;background:var(--blue-soft);border-left:3px solid var(--blue);padding:10px 14px;font-size:15px}
+.note-box strong{color:var(--blue);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{font-size:13px;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 12px;font-variant-numeric:tabular-nums}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
@@ -278,8 +280,11 @@ const CATS = [
     pts:["Tamis moléculaire en fin de vie","Besoin d'une pureté plus élevée","Hausse de la production","Passage des bouteilles au générateur"], spec:["Coût au m³ d'azote"]}
  ]},
  {id:"gainage", name:"Gainage compresseur", subs:[
-   {id:"installation", name:"Installation", h:"La chaleur du compresseur, utile", lead:"Un compresseur transforme en chaleur l'essentiel de l'énergie qu'il consomme. Le gainage la dirige où vous en avez besoin.",
-    pts:["Gaine d'extraction de l'air chaud","Volet été / hiver","Chauffage d'atelier ou d'entrepôt","Ventilation du local compresseur"], spec:["Jusqu'à 90 % d'énergie récupérable"]}
+   {id:"installation", name:"Installation", h:"Captez la chaleur de vos compresseurs",
+    lead:"Le gainage de compresseur consiste à capter l'air chaud dégagé par vos compresseurs. Ce flux est soit évacué à l'extérieur du bâtiment, soit canalisé pour chauffer vos locaux. Chaque gainage est conçu sur mesure, après une visite de votre installation.",
+    pts:["Évacuation de l'air chaud vers l'extérieur","Chauffage d'ateliers, d'entrepôts ou de bureaux","Local compresseur mieux ventilé, machines moins sollicitées","Volets de régulation pour passer de l'été à l'hiver"],
+    note:"<strong>Prime CEE.</strong> Cette opération peut être éligible à la prime CEE (Certificats d'Économies d'Énergie), qui réduit le coût de l'installation pour votre entreprise.",
+    spec:["Gainage sur mesure","Visite de votre installation sur place"]}
  ]},
  {id:"occasion", name:"Occasion", subs:[
    {id:"vente", name:"Vente", h:"Compresseurs d'occasion révisés", lead:"Une solution économique pour démarrer, compléter ou sécuriser votre production.", occasion:true,
@@ -400,6 +405,7 @@ function render(){
     <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)} · ${esc(s.name)}</span>
       <h1>${esc(s.h)}</h1><p class="lead">${esc(s.lead)}</p>
       <ul class="points">${s.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+      ${s.note?`<p class="note-box">${s.note}</p>`:""}
       ${s.spec.length?`<div class="chips">${s.spec.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}
       <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div></div>
     <div class="subbar gut" role="tablist" aria-label="Prestations"><span class="lbl">Prestations</span>
