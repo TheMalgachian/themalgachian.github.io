@@ -147,6 +147,8 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .bio{max-width:62ch}
 .bio p{margin:0 0 10px}
 .bio .role{color:var(--blue);font-weight:500;margin-bottom:16px}
+.bio blockquote cite{display:block;margin-top:6px;font-size:14px;font-style:normal;font-weight:500;color:var(--blue)}
+.bio blockquote cite::before{content:"— "}
 .bio blockquote{margin:16px 0 0;padding-left:16px;border-left:3px solid var(--blue);font-size:19px;font-weight:300;color:var(--ink)}
 .timeline{list-style:none;margin:0;display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:24px;padding-block:22px 26px;position:relative}
 .timeline::before{content:"";position:absolute;left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));top:31px;height:3px;background:var(--blue)}
@@ -370,7 +372,8 @@ const DIRIGEANT = {
   texte:["Pascal Bouvier dirige Air-Tech et intervient lui-même sur les installations de ses clients. Vous avez un seul interlocuteur, du premier rendez-vous jusqu'au dépannage.",
          "Dans l'air comprimé depuis 1990, il crée sa première entreprise, ACDE, en 1993. Après sa cession en 2003, il fonde Air-Tech en 2005, puis ouvre son local de Saint-Pierre-la-Palud en 2015.",
          "Ce qui l'anime au quotidien : la confiance que lui accordent ses clients et la fierté de les accompagner, en apportant à chacun une réponse adaptée à ses besoins."],
-  citation:"Mes clients me font confiance. Être à la hauteur de cette confiance, c'est ma fierté."
+  citation:"La qualité n'est jamais le fruit du hasard ; c'est toujours le résultat d'un effort intelligent.",
+  auteur:"John Ruskin"
 };
 const CHRONOLOGIE = [
   {annee:"1990", titre:"Les débuts", texte:"Premiers pas dans l'air comprimé, au sein d'une entreprise du secteur."},
@@ -485,7 +488,7 @@ function histoire(){
       <div class="portrait" style="${photo('images/dirigeant.jpg')}" role="img" aria-label="Photo de ${esc(d.nom)}"></div>
       <div class="bio"><span class="eyebrow">Notre histoire</span><h1>${esc(d.nom)}</h1><p class="role">${esc(d.role)}</p>
         ${d.texte.map(t=>`<p>${esc(t)}</p>`).join("")}
-        <blockquote>« ${esc(d.citation.replace(/^[«"\s]+|[»"\s]+$/g,""))} »</blockquote></div>
+        <blockquote>« ${esc(d.citation.replace(/^[«"\s]+|[»"\s]+$/g,""))} »${d.auteur?`<cite>${esc(d.auteur)}</cite>`:""}</blockquote></div>
     </div>
     <ol class="timeline gut" style="--n:${CHRONOLOGIE.length}">${CHRONOLOGIE.map(e=>`<li><span class="year">${esc(e.annee)}</span><strong>${esc(e.titre)}</strong><small>${esc(e.texte)}</small></li>`).join("")}</ol>
   </section>`;
