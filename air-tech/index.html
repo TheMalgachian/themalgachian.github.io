@@ -101,6 +101,9 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 
 /* Contact */
 .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 24px;margin:4px 0 0;font-size:16px}
+.info-link{color:var(--blue);text-decoration:none;border-bottom:1px solid currentColor}
+.info-link:hover{color:var(--blue-deep)}
+.facts dd{overflow-wrap:anywhere}
 .facts dt{color:var(--muted)}.facts dd{margin:0}
 
 
@@ -327,11 +330,9 @@ const PARTENAIRES = [
 ];
 const INFOS = [
   ["Adresse","Chemin du Puits Perret, 69210 Saint-Pierre-la-Palud"],
-  ["Téléphone","À compléter"],
-  ["E-mail","À compléter"],
-  ["Zone d'intervention","À compléter (ex. : départements couverts)"],
-  ["Horaires","À compléter"],
-  ["Dépannage","À compléter (délai et numéro d'urgence)"]
+  ["Téléphone","06 75 72 12 34"],
+  ["E-mail","pascalbouvier.air-tech@wanadoo.fr"],
+  ["Zone d'intervention","Auvergne-Rhône-Alpes"]
 ];
 const HOME_TABS = [["presentation","Présentation"],["activites","Nos activités"],["engagements","Nos engagements"],["partenaires","Partenaires"],["infos","Infos pratiques"]];
 
@@ -388,7 +389,7 @@ function render(){
   if(c.contact){
     m.innerHTML = `<section class="hero"><div class="visual" style="${bg('contact')}"></div>
       <div class="copy gut"><span class="eyebrow">Contact</span><h1>Parlons de votre installation</h1>
-      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${infoVal(k,v)}</dd>`).join("")}</dl>
       <div class="actions"><button class="pill" data-devis>Demander un devis</button></div></div>
       </section>`;
     return;
@@ -408,6 +409,12 @@ function render(){
 
 const CATNAME = id => (CATS.find(c=>c.id===id)||{}).name || "";
 function photo(src){ return `background-image:url('${src}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
+
+function infoVal(k,v){
+  if(k==="Téléphone") return `<a class="info-link" href="tel:${esc(v.replace(/\s/g,""))}">${esc(v)}</a>`;
+  if(k==="E-mail") return `<a class="info-link" href="mailto:${esc(v)}">${esc(v)}</a>`;
+  return esc(v);
+}
 
 function accueil(){
   const t = state.sub.accueil || "presentation";
@@ -429,7 +436,7 @@ function accueil(){
       <div class="partners">${PARTENAIRES.map(x=>`<div class="partner"><span class="plogo"><img src="images/partenaires/${esc(x.logo)}" alt="${esc(x.nom)}" onerror="this.remove()"><span>${esc(x.nom)}</span></span><small>${esc(x.texte)}</small></div>`).join("")}</div>`;
   } else {
     body = `<span class="eyebrow">Infos pratiques</span><h1>Bon à savoir</h1>
-      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <dl class="facts">${INFOS.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${infoVal(k,v)}</dd>`).join("")}</dl>
       <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div>`;
   }
   return `<section class="hero"><div class="visual" style="${bg('accueil')}"></div>
