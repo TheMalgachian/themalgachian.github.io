@@ -136,7 +136,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .lb-specs{display:grid;grid-template-columns:auto 1fr;gap:4px 24px;margin:12px 0 16px;font-size:15px;font-variant-numeric:tabular-nums}
 .lb-specs dt{color:var(--muted)}.lb-specs dd{margin:0}
 .lb{max-width:880px}
-.lb-img{aspect-ratio:16/10;max-width:100%;max-height:70vh;background-size:contain,cover,cover;background-repeat:no-repeat;background-position:center;background-color:#0d1f3c}
+.lb-img{aspect-ratio:16/10;max-width:100%;max-height:70vh;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#0d1f3c}
 .lb-body{padding:16px 26px 22px}
 .lb-body p{margin:0 0 6px}
 .lb-meta{font-size:13px;color:var(--blue);font-weight:600;letter-spacing:.04em}
@@ -529,12 +529,12 @@ function openLb(title, img, meta, text, specs, devis){
 }
 function openShot(i){
   const x = CHANTIERS[i];
-  openLb(x.titre, photo('images/chantiers/'+x.photo), [CATNAME(x.cat),x.lieu,x.annee].filter(Boolean).join(" · "), x.texte, [], false);
+  openLb(x.titre, `background-image:url('images/chantiers/${x.photo}?v=${V}')`, [CATNAME(x.cat),x.lieu,x.annee].filter(Boolean).join(" · "), x.texte, [], false);
 }
 function openOcc(i){
   const x = OCCASIONS[i];
   const specs = [["Puissance",x.puissance],["Pression",x.pression],["Année",x.annee],["Heures de marche",x.heures],["Prix",x.vendu?"Vendu":(x.prix||"Sur demande")]].filter(r=>r[1]);
-  openLb(x.titre, photo('images/occasions/'+x.photo), "Occasion révisée", x.texte, specs, !x.vendu);
+  openLb(x.titre, `background-image:url('images/occasions/${x.photo}?v=${V}')`, "Occasion révisée", x.texte, specs, !x.vendu);
   state.occ = x.titre;
 }
 
