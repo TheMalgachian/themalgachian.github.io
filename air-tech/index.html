@@ -395,7 +395,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const state = {cat:"accueil", sub:{}};
 
-const POS = {"air-comprime":"85% center", accueil:"58% center", contact:"58% center"};  /* cadrage des photos, si besoin */
+const POS = {accueil:"58% center", contact:"58% center", azote:"center 45%"};  /* cadrage des photos, si besoin */
 function bg(id){ return `background-position:${POS[id]||'center'};background-image:url('${IMG(id)}'),var(--pipes),linear-gradient(120deg,#002a66 0%,#0049aa 60%,#0b5cc2 100%)`; }
 
 function renderMenu(){
