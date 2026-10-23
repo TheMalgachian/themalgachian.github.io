@@ -148,7 +148,7 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .bio p{margin:0 0 10px}
 .bio .role{color:var(--blue);font-weight:500;margin-bottom:16px}
 .bio blockquote{margin:16px 0 0;padding-left:16px;border-left:3px solid var(--blue);font-size:19px;font-weight:300;color:var(--ink)}
-.timeline{list-style:none;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding-block:22px 26px;position:relative}
+.timeline{list-style:none;margin:0;display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:24px;padding-block:22px 26px;position:relative}
 .timeline::before{content:"";position:absolute;left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));top:31px;height:3px;background:var(--blue)}
 .timeline li{position:relative;padding-top:26px;display:flex;flex-direction:column;gap:2px;min-width:0}
 .timeline li::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
@@ -327,7 +327,7 @@ const ENTREPRISE = {
   titre:"L'air comprimé, de la vente au dépannage",
   texte:["Air-Tech accompagne les entreprises dans toutes les étapes de leur installation d'air comprimé : choix du matériel, installation, entretien et dépannage.",
          "Présentez ici l'entreprise en quelques phrases : où elle se trouve, depuis quand elle existe, combien de personnes y travaillent, quels types de clients elle sert."],
-  chiffres:[["2005","Année de création"],["+ de 300","Clients"]]
+  chiffres:[["+ de 35 ans","D'expérience"],["2005","Année de création"],["+ de 300","Clients"]]
 };
 const ENGAGEMENTS = [
   ["Un seul interlocuteur","Du conseil au dépannage, c'est Pascal Bouvier, dirigeant et technicien, qui suit votre installation."],
@@ -368,16 +368,17 @@ const DIRIGEANT = {
   nom:"Pascal Bouvier",
   role:"Dirigeant et technicien d'Air-Tech",
   texte:["Pascal Bouvier dirige Air-Tech et intervient lui-même sur les installations de ses clients. Vous avez un seul interlocuteur, du premier rendez-vous jusqu'au dépannage.",
-         "Présentez ici son parcours : sa formation, ses années d'expérience dans l'air comprimé, les entreprises où il a travaillé.",
+         "Dans l'air comprimé depuis 1990, il crée sa première entreprise, ACDE, en 1993. Après sa cession en 2003, il fonde Air-Tech en 2005, puis ouvre son local de Saint-Pierre-la-Palud en 2015.",
          "Expliquez pourquoi il a créé Air-Tech et ce qui compte pour lui : la réactivité, le conseil, le travail bien fait."],
   citation:"Une phrase du dirigeant, entre guillemets, qui résume sa façon de travailler."
 };
 const CHRONOLOGIE = [
-  {annee:"AAAA", titre:"Les débuts", texte:"Premières années d'expérience dans l'air comprimé."},
-  {annee:"2005", titre:"Création d'Air-Tech", texte:"Lancement de l'entreprise et premiers clients."},
-  {annee:"AAAA", titre:"Premier atelier", texte:"Ouverture d'un atelier pour la réparation et la révision des machines."},
-  {annee:"AAAA", titre:"Nouvelles activités", texte:"Générateurs d'azote et gainage de compresseurs."},
-  {annee:"Aujourd'hui", titre:"Air-Tech", texte:"Vente, installation, maintenance et dépannage."}
+  {annee:"1990", titre:"Les débuts", texte:"Premiers pas dans l'air comprimé, au sein d'une entreprise du secteur."},
+  {annee:"1993", titre:"Création d'ACDE", texte:"Pascal Bouvier fonde ACDE : Air Comprimé Dépannage Entretien."},
+  {annee:"2003", titre:"Cession d'ACDE", texte:"ACDE est cédée. Pascal Bouvier y poursuit son activité deux ans auprès du repreneur."},
+  {annee:"2005", titre:"Création d'Air-Tech", texte:"Pascal Bouvier lance Air-Tech."},
+  {annee:"2015", titre:"Premier atelier", texte:"Ouverture d'un local à Saint-Pierre-la-Palud."},
+  {annee:"Aujourd'hui", titre:"Air-Tech", texte:"Plus de 300 clients en Auvergne-Rhône-Alpes."}
 ];
 
 const $ = s => document.querySelector(s);
@@ -486,7 +487,7 @@ function histoire(){
         ${d.texte.map(t=>`<p>${esc(t)}</p>`).join("")}
         <blockquote>« ${esc(d.citation.replace(/^[«"\s]+|[»"\s]+$/g,""))} »</blockquote></div>
     </div>
-    <ol class="timeline gut">${CHRONOLOGIE.map(e=>`<li><span class="year">${esc(e.annee)}</span><strong>${esc(e.titre)}</strong><small>${esc(e.texte)}</small></li>`).join("")}</ol>
+    <ol class="timeline gut" style="--n:${CHRONOLOGIE.length}">${CHRONOLOGIE.map(e=>`<li><span class="year">${esc(e.annee)}</span><strong>${esc(e.titre)}</strong><small>${esc(e.texte)}</small></li>`).join("")}</ol>
   </section>`;
 }
 
