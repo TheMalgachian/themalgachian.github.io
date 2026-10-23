@@ -63,6 +63,10 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 .points li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:2px;background:var(--blue)}
 .note-box{margin:2px 0 0;max-width:60ch;background:var(--blue-soft);border-left:3px solid var(--blue);padding:10px 14px;font-size:15px}
 .note-box strong{color:var(--blue);font-weight:600}
+.sectors{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:14px;max-width:62ch}
+.sectors span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.sectors em{font-style:normal;color:var(--ink)}
+.sectors em::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--blue);margin-right:7px;vertical-align:middle}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{font-size:13px;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 12px;font-variant-numeric:tabular-nums}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
@@ -255,11 +259,13 @@ main{flex:1;min-height:0;position:relative;overflow:hidden;background:var(--pape
 const IMG = id => `images/${id}.jpg`;
 
 const CATS = [
- {id:"air-comprime", name:"Air comprimé", subs:[
-   {id:"vente", name:"Vente", h:"Le bon compresseur, au bon débit", lead:"Nous dimensionnons votre compresseur selon votre consommation réelle, pas selon un catalogue.",
-    pts:["Compresseurs à vis et à pistons","Vitesse fixe ou variable","Sécheurs frigorifiques et par adsorption","Cuves, filtres et purgeurs"], spec:["7 à 13 bar","2,2 à 250 kW","Qualité d'air ISO 8573-1"]},
+ {id:"air-comprime", name:"Air comprimé",
+  secteurs:["Grands industriels","Agroalimentaire","Automobile","Scieries","Industrie médicale","Mécanique générale","Start-up"],
+  subs:[
+   {id:"vente", name:"Vente", h:"Le bon compresseur, au bon débit", lead:"Nous dimensionnons votre compresseur selon votre consommation réelle. Sécheurs et filtres sont choisis selon la qualité d'air exigée par votre activité.",
+    pts:["Compresseurs à vis et à pistons","Vitesse fixe ou variable","Sécheurs simples et sécheurs à billes","Filtres de toutes tailles, cuves et purgeurs"], spec:[]},
    {id:"installation", name:"Installation", h:"Une centrale d'air prête à produire", lead:"Pose, raccordement et mise en service de votre centrale d'air comprimé.",
-    pts:["Implantation du local compresseur","Raccordement électrique et réseau","Évacuation des condensats","Mise en service et réglages"], spec:["Visite technique sur site","Essais en charge"]},
+    pts:["Implantation du local compresseur","Sécheurs simples ou à billes","Filtration adaptée à la qualité d'air exigée","Raccordement, mise en service et réglages"], spec:["Visite technique sur site","Essais en charge"]},
    {id:"maintenance", name:"Maintenance", h:"Pas d'arrêt de production imprévu", lead:"Un entretien planifié pour fiabiliser vos machines et maîtriser leur consommation.",
     pts:["Vidange et remplacement des filtres","Contrôle des séparateurs d'huile","Recherche de fuites","Rapport après chaque visite"], spec:["Contrat annuel","Détection de fuites par ultrasons"]},
    {id:"remplacement", name:"Remplacement", h:"Remplacer sans arrêter l'atelier", lead:"Votre compresseur est en fin de vie ? Nous le remplaçons en limitant l'arrêt.",
@@ -405,6 +411,7 @@ function render(){
     <div class="copy gut" key="${c.id}-${s.id}"><span class="eyebrow">${esc(c.name)} · ${esc(s.name)}</span>
       <h1>${esc(s.h)}</h1><p class="lead">${esc(s.lead)}</p>
       <ul class="points">${s.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+      ${c.secteurs?`<div class="sectors"><span>Nos clients</span>${c.secteurs.map(x=>`<em>${esc(x)}</em>`).join("")}</div>`:""}
       ${s.note?`<p class="note-box">${s.note}</p>`:""}
       ${s.spec.length?`<div class="chips">${s.spec.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}
       <div class="actions"><button class="pill" data-devis>Demander un devis</button><button class="pill ghost" data-cat="contact">Nous contacter</button></div></div>
